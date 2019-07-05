@@ -10,7 +10,7 @@ import io.reactivex.disposables.Disposable;
  * <pre>
  *     author   : 高磊华
  *     time     : 2019/05/17
- *     company  : 磊华集团
+ *     company  : 永无bug集团
  *     desc     : activity基类
  * </pre>
  */

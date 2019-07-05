@@ -8,7 +8,7 @@ import java.util.Random;
  * <pre>
  *     author : 高磊华
  *     e-mail : 984992087@qq.com
- *     company: 磊华集团
+ *     company: 永无bug集团
  *     time   : 2019/6/4 10:35
  *     desc   : 最常用 工具类
  *

@@ -13,7 +13,7 @@ import com.doyo.sdk.mvp.BaseSimplePresenter;
  * <pre>
  *     author : 高磊华
  *     e-mail : 984992087@qq.com
- *     company: 磊华集团
+ *     company: 永无bug集团
  *     time   : 2019/05/20
  *     desc   : 网络请求加载状态view的fragment，主要用于显示加载中、空界面、加载失败等状态界面显示
  *

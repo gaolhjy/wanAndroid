@@ -5,7 +5,7 @@ package com.doyo.sdk.mvp;
  * <pre>
  *     author   : 高磊华
  *     time     : 2019/05/17
- *     company  : 磊华集团
+ *     company  : 永无bug集团
  *     desc     : 返回值的基类
  * </pre>
  */

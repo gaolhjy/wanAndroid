@@ -35,7 +35,7 @@ import butterknife.BindView;
  * <pre>
  *     author : 高磊华
  *     e-mail : 984992087@qq.com
- *     company: 磊华集团
+ *     company: 永无bug集团
  *     time   : 2019/5/23 16:46
  *     desc   : 项目二级子fragment.   当前页从第1页开始
  *

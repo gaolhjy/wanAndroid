@@ -14,7 +14,7 @@ import io.reactivex.schedulers.Schedulers;
  * <pre>
  *     author : 高磊华
  *     e-mail : 984992087@qq.com
- *     company: 磊华集团
+ *     company: 永无bug集团
  *     time   : 2019/6/20 09:09
  *     desc   : RxJava的基类
  *

@@ -6,7 +6,7 @@ import java.util.List;
  * <pre>
  *     author : 高磊华
  *     e-mail : 984992087@qq.com
- *     company: 磊华集团
+ *     company: 永无bug集团
  *     time   : 2019/5/24 11:15
  *     desc   : 公众号列表
  *

@@ -13,7 +13,7 @@ import java.util.List;
  * <pre>
  *     author : 高磊华
  *     e-mail : 984992087@qq.com
- *     company: 磊华集团
+ *     company: 永无bug集团
  *     time   : 2019/6/19 13:42
  *     desc   : 对BaseQuickAdapter进行二次封装.主要是 加载更多样式
  *

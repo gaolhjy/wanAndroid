@@ -16,7 +16,7 @@ import butterknife.Unbinder;
  * <pre>
  *     author   : 高磊华
  *     time     : 2019/05/17
- *     company  : 磊华集团
+ *     company  : 永无bug集团
  *     desc     : activity最原始的基类
  *      在有butterknife的情况下,一般含有recyclerview的界面,才需要initView.
  * </pre>

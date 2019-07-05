@@ -10,7 +10,7 @@ import com.doyo.sdk.mvp.AbstractView;
  * <pre>
  *     author   : 高磊华
  *     time     : 2019/05/17
- *     company  : 磊华集团
+ *     company  : 永无bug集团
  *     desc     : 没有p层 activity基类
  * </pre>
  */

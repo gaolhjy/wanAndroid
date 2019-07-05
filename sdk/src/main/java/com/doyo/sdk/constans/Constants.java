@@ -4,7 +4,7 @@ package com.doyo.sdk.constans;
  * <pre>
  *     author : 高磊华
  *     e-mail : 984992087@qq.com
- *     company: 磊华集团
+ *     company: 永无bug集团
  *     time   : 2019/6/25 15:53
  *     desc   : 常量
  *

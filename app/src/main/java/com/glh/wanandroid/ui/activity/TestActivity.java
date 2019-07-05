@@ -8,7 +8,7 @@ import com.glh.wanandroid.R;
  * <pre>
  *     author : 高磊华
  *     e-mail : 984992087@qq.com
- *     company: 磊华集团
+ *     company: 永无bug集团
  *     time   : 2019/6/18 16:19
  *     desc   : 测试界面
  *
