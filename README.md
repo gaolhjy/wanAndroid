@@ -45,11 +45,7 @@ GitHub上已经有很多WanAndroid的项目了,为什么还要有这一个?
 
 5.日志、sp、屏幕、toast工具类封装
 
-主要界面截图:
-====
-![Image text](https://github.com/gaolhjy/enjoyshop/blob/master/screenshots/pic11.png)
-![Image text](https://github.com/gaolhjy/enjoyshop/blob/master/screenshots/pic12.png)
-![Image text](https://github.com/gaolhjy/enjoyshop/blob/master/screenshots/pic13.png)
+
 
 修改完善记录:
 ====
@@ -78,6 +74,13 @@ QQ群号: 120798193 (免费交流群. 只有1个要求,先对项目star后,即�
 
 ![Image text](https://github.com/gaolhjy/enjoyshop/blob/master/screenshots/QQ%E7%BE%A4(%E5%85%8D%E8%B4%B9).png)
 
+
+
+特别感谢:
+====
+1. [鸿洋大神的开发api](https://www.wanandroid.com/blog/show/2)
+
+2. [主要参考项目] (https://github.com/JsonChao/Awesome-WanAndroid)
 
 
 
