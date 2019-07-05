@@ -8,7 +8,6 @@ import com.glh.wanandroid.bean.TodoDesData;
 import com.glh.wanandroid.core.DataManager;
 import com.glh.wanandroid.global.AppContext;
 import com.glh.wanandroid.presenter.contract.ToDoContract;
-import com.glh.wanandroid.presenter.contract.WxArticleContract;
 import com.glh.wanandroid.utils.RxUtils;
 
 /**
@@ -26,7 +25,7 @@ public class ToDoPresenter extends BasePresenter<ToDoContract.View>
         implements ToDoContract.Presenter {
 
     private DataManager            mDataManager;
-    private WxArticleContract.View view;
+    private ToDoContract.View view;
 
     public ToDoPresenter(DataManager dataManager, ToDoContract.View view) {
         super(dataManager);

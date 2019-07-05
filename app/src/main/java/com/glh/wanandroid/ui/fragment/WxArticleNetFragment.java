@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.doyo.sdk.fragment.BaseNetFragment;
+import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.utils.NetUtils;
 import com.glh.wanandroid.R;
@@ -40,7 +40,7 @@ import butterknife.BindView;
  *
  * </pre>
  */
-public class WxArticleNetFragment extends BaseNetFragment<WxArticlePresenter> implements WxArticleContract.View, BaseQuickAdapter.RequestLoadMoreListener {
+public class WxArticleNetFragment extends BaseListFragment<WxArticlePresenter> implements WxArticleContract.View, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.recycler_view)
     RecyclerView       mRecyclerView;

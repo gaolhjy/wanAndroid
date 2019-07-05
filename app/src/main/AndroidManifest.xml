@@ -26,7 +26,6 @@
         <activity android:name=".ui.activity.MyCollectNetActivity"/>
         <activity android:name=".ui.activity.KnowleDetailActivity"/>
         <activity android:name=".ui.activity.ArticleDetailActivity"/>
-        <activity android:name=".ui.activity.TestActivity"/>
         <activity android:name=".ui.activity.MyTodoActivity"/>
         <activity android:name=".ui.activity.AddTodoActivity"/>
     </application>

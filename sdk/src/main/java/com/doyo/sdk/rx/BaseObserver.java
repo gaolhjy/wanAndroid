@@ -8,6 +8,7 @@ import com.doyo.sdk.http.exception.OtherException;
 import com.doyo.sdk.http.exception.ServerException;
 import com.doyo.sdk.mvp.AbstractView;
 import com.doyo.sdk.mvp.IBaseListView;
+import com.doyo.sdk.mvp.IBaseNetView;
 
 import io.reactivex.observers.ResourceObserver;
 import retrofit2.HttpException;
@@ -73,7 +74,9 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
 
         if (isShowError) {
-            mView.showError();
+            if (mView instanceof IBaseNetView) {
+                ((IBaseNetView) mView).showError();
+            }
         }
 
         if (mView instanceof IBaseListView) {

@@ -10,7 +10,7 @@ package com.doyo.sdk.mvp;
  *
  * </pre>
  */
-public interface IBaseListView extends AbstractView{
+public interface IBaseListView extends AbstractView {
 
     /**
      * 显示加载更多错误
@@ -22,5 +22,11 @@ public interface IBaseListView extends AbstractView{
      * 没有更多数据了
      */
     void showNoMoreData();
+
+
+    /**
+     * Show empty
+     */
+    void showEmpty();
 
 }

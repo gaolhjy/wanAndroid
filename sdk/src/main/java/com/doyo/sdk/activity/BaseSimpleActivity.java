@@ -36,39 +36,10 @@ public abstract class BaseSimpleActivity extends AbstractSimpleActivity
         UiUtils.showSnackMessage(this, errorMsg);
     }
 
-    @Override
-    public void showNormal() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-    @Override
-    public void showEmpty() {
-
-    }
-
-    @Override
-    public void showLoginView() {
-
-    }
-
-    @Override
-    public void showLogoutView() {
-
-    }
 
     @Override
     public void showToast(String message) {
         UiUtils.showMessage(this, message);
-    }
-
-    @Override
-    public void showSnackBar(String message) {
-        UiUtils.showSnackMessage(this, message);
     }
 
 }

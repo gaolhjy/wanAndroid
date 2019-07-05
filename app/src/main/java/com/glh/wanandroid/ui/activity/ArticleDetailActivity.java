@@ -73,10 +73,7 @@ public class ArticleDetailActivity extends BaseSimpleActivity {
     }
 
 
-    @Override
-    public void showLoading() {
 
-    }
 
 
 }

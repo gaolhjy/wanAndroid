@@ -1,7 +1,7 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.AbstractView;
+import com.doyo.sdk.mvp.IBaseNetView;
 import com.glh.wanandroid.bean.ProjectData;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
 public interface ProjectContract {
 
 
-    interface View extends AbstractView {
+    interface View extends IBaseNetView {
 
         /**
          * Show content

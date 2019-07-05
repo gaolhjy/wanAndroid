@@ -49,9 +49,6 @@ public class MyTodoActivity extends BaseSimpleActivity {
         return R.layout.activity_my_todo;
     }
 
-    @Override
-    public void showLoading() {
-    }
 
     private void initBottomNavigationView() {
 

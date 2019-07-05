@@ -103,9 +103,6 @@ public class KnowleDetailActivity extends BaseSimpleActivity {
         mTabLayout.setViewPager(mViewPager);
     }
 
-    @Override
-    public void showLoading() {
 
-    }
 
 }

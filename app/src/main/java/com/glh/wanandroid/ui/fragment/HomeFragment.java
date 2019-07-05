@@ -10,7 +10,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.doyo.sdk.fragment.BaseNetFragment;
+import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.rx.RxBus;
 import com.doyo.sdk.utils.GlideImageLoader;
@@ -32,7 +32,6 @@ import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.HomePresenter;
 import com.glh.wanandroid.presenter.contract.HomeContract;
 import com.glh.wanandroid.ui.activity.LoginActivity;
-import com.glh.wanandroid.ui.activity.TestActivity;
 import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
@@ -55,7 +54,7 @@ import butterknife.BindView;
  * </pre>
  */
 
-public class HomeFragment extends BaseNetFragment<HomePresenter> implements HomeContract.View,
+public class HomeFragment extends BaseListFragment<HomePresenter> implements HomeContract.View,
         BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.normal_view)
@@ -130,7 +129,7 @@ public class HomeFragment extends BaseNetFragment<HomePresenter> implements Home
                 position));
 
         mAdapter.setOnItemClickListener((adapter, view, position) -> {
-            JumpUtils.JumpToActivity(_mActivity, TestActivity.class);
+
         });
 
 

@@ -27,7 +27,7 @@ public class WxPresenter extends BasePresenter<WxContract.View>
 
     private DataManager     mDataManager;
     private WxContract.View view;
-    private boolean         isRefresh = true;
+
 
     public WxPresenter(DataManager dataManager, WxContract.View view) {
         super(dataManager);

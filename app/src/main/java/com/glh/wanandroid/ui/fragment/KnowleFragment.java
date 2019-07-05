@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.doyo.sdk.fragment.BaseNetFragment;
+import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.utils.JumpUtils;
 import com.doyo.sdk.utils.NetUtils;
@@ -41,7 +41,7 @@ import butterknife.BindView;
  * </pre>
  */
 
-public class KnowleFragment extends BaseNetFragment<KnowlePresenter>
+public class KnowleFragment extends BaseListFragment<KnowlePresenter>
         implements KnowleContract.View, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.recycler_view)
@@ -152,5 +152,15 @@ public class KnowleFragment extends BaseNetFragment<KnowlePresenter>
     @Override
     public void onLoadMoreRequested() {
         mAdapter.loadMoreEnd();
+    }
+
+    @Override
+    public void showLoadMoreError() {
+
+    }
+
+    @Override
+    public void showNoMoreData() {
+
     }
 }

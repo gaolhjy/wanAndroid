@@ -64,7 +64,6 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenter> implements Lo
     RelativeLayout mLoginGroup;
 
 
-
     @Override
     protected void initEventAndData() {
     }
@@ -83,7 +82,7 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenter> implements Lo
 
     @Override
     public void showErrorMes(String msg) {
-        showSnackBar(msg);
+        showToast(msg);
     }
 
     @OnClick(R.id.login_btn)
@@ -112,4 +111,9 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenter> implements Lo
 
     }
 
+
+    @Override
+    public void showError() {
+
+    }
 }

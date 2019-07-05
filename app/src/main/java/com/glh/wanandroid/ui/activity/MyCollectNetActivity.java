@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.doyo.sdk.activity.BaseNetActivity;
+import com.doyo.sdk.activity.BaseListActivity;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.utils.NetUtils;
 import com.doyo.sdk.utils.UiUtils;
@@ -41,7 +41,7 @@ import butterknife.BindView;
  * </pre>
  */
 
-public class MyCollectNetActivity extends BaseNetActivity<MyCollectPresenter> implements MyCollectContract.View {
+public class MyCollectNetActivity extends BaseListActivity<MyCollectPresenter> implements MyCollectContract.View {
 
     @BindView(R.id.collect_recycler_view)
     RecyclerView       mRecyclerView;
@@ -182,6 +182,16 @@ public class MyCollectNetActivity extends BaseNetActivity<MyCollectPresenter> im
 
     @Override
     public void reload() {
+
+    }
+
+    @Override
+    public void showLoadMoreError() {
+
+    }
+
+    @Override
+    public void showNoMoreData() {
 
     }
 }

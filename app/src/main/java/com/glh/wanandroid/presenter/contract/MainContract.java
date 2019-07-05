@@ -26,12 +26,12 @@ public interface MainContract {
         /**
          * Show auto login view
          */
-        void showAutoLoginView();
+        void showLoginView();
 
         /**
          * Show logout success
          */
-        void showLogoutSuccess();
+        void showLogoutView();
     }
 
     interface Presenter extends AbstractPresenter<View> {

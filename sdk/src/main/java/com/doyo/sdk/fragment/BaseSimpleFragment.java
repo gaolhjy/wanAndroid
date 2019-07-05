@@ -17,34 +17,10 @@ public abstract class BaseSimpleFragment extends AbstractSimpleFragment implemen
 
     @Override
     public void useNightMode(boolean isNightMode) {
-
     }
 
     @Override
     public void showErrorMsg(String errorMsg) {
-
-    }
-
-    @Override
-    public void showNormal() {
-
-    }
-
-    @Override
-    public void showError() {
-
-    }
-
-
-
-    @Override
-    public void showLoginView() {
-
-    }
-
-    @Override
-    public void showLogoutView() {
-
     }
 
 
@@ -53,9 +29,6 @@ public abstract class BaseSimpleFragment extends AbstractSimpleFragment implemen
 
     }
 
-    @Override
-    public void showSnackBar(String message) {
 
-    }
 }
 

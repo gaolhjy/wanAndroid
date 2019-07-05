@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.doyo.sdk.R;
 import com.doyo.sdk.mvp.BaseSimplePresenter;
+import com.doyo.sdk.mvp.IBaseNetView;
 
 
 /**
@@ -20,19 +21,21 @@ import com.doyo.sdk.mvp.BaseSimplePresenter;
  * </pre>
  */
 
-public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends BaseMVPFragment<T> {
+public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends BaseMVPFragment<T> implements IBaseNetView {
 
     private static final int NORMAL_STATE  = 0;
     private static final int LOADING_STATE = 1;
     public static final  int ERROR_STATE   = 2;
     public static final  int EMPTY_STATE   = 3;
 
+    protected ViewGroup           parent;
     private   LottieAnimationView mLoadingAnimation;
     protected ViewGroup           mNormalView;
     protected View                mErrorView;
     protected View                mLoadingView;
     protected View                mEmptyiew;
-    private   int                 currentState = NORMAL_STATE;
+
+    protected int currentState = NORMAL_STATE;
 
 
     @Override
@@ -51,20 +54,16 @@ public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends Bas
             throw new IllegalStateException(
                     "mNormalView's ParentView should be a ViewGroup.");
         }
-        ViewGroup parent = (ViewGroup) mNormalView.getParent();
+        parent = (ViewGroup) mNormalView.getParent();
         View.inflate(_mActivity, R.layout.loading_view, parent);
         View.inflate(_mActivity, R.layout.error_view, parent);
-        View.inflate(_mActivity, R.layout.empty_view, parent);
         mLoadingView = parent.findViewById(R.id.loading_group);
         mErrorView = parent.findViewById(R.id.error_group);
-        mEmptyiew = parent.findViewById(R.id.empty_group);
         TextView reloadTv = mErrorView.findViewById(R.id.error_reload_tv);
         reloadTv.setOnClickListener(v -> reload());
-        mEmptyiew.setOnClickListener(v -> reload());
         mLoadingAnimation = mLoadingView.findViewById(R.id.loading_animation);
         mErrorView.setVisibility(View.GONE);
         mLoadingView.setVisibility(View.GONE);
-        mEmptyiew.setVisibility(View.GONE);
         mNormalView.setVisibility(View.VISIBLE);
     }
 
@@ -102,17 +101,6 @@ public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends Bas
         mErrorView.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public void showEmpty() {
-
-        if (currentState == EMPTY_STATE) {
-            return;
-        }
-
-        hideCurrentView();
-        currentState = EMPTY_STATE;
-        mEmptyiew.setVisibility(View.VISIBLE);
-    }
 
     @Override
     public void showNormal() {
@@ -124,7 +112,7 @@ public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends Bas
         mNormalView.setVisibility(View.VISIBLE);
     }
 
-    private void hideCurrentView() {
+    protected void hideCurrentView() {
         switch (currentState) {
             case NORMAL_STATE:
                 if (mNormalView == null) {

@@ -20,45 +20,13 @@ public interface AbstractView {
      */
     void useNightMode(boolean isNightMode);
 
+
     /**
      * Show error message
      *
      * @param errorMsg error message
      */
     void showErrorMsg(String errorMsg);
-
-    /**
-     * showNormal
-     */
-    void showNormal();
-
-
-    /**
-     * Show error
-     */
-    void showError();
-
-    /**
-     * Show loading
-     */
-    void showLoading();
-
-
-    /**
-     * Show empty
-     */
-    void showEmpty();
-
-
-    /**
-     * Show login view
-     */
-    void showLoginView();
-
-    /**
-     * Show logout view
-     */
-    void showLogoutView();
 
 
     /**
@@ -68,11 +36,5 @@ public interface AbstractView {
      */
     void showToast(String message);
 
-    /**
-     * Show snackBar
-     *
-     * @param message Message
-     */
-    void showSnackBar(String message);
 
 }

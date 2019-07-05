@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.airbnb.lottie.LottieAnimationView;
 import com.doyo.sdk.R;
 import com.doyo.sdk.mvp.BaseSimplePresenter;
+import com.doyo.sdk.mvp.IBaseNetView;
 
 
 /**
@@ -15,23 +16,27 @@ import com.doyo.sdk.mvp.BaseSimplePresenter;
  *     e-mail : 984992087@qq.com
  *     company: 永无bug集团
  *     time   : 2019/05/20
- *     desc   : 网络请求加载状态view的activity，主要用于显示加载中、空界面、加载失败等状态界面显示
+ *     desc   : 网络请求加载状态view的activity，主要用于显示加载中、正常、加载失败等状态界面显示
  *
  * </pre>
  */
 
-public abstract class BaseNetActivity<T extends BaseSimplePresenter> extends BaseMVPActivity<T> {
+public abstract class BaseNetActivity<T extends BaseSimplePresenter> extends BaseMVPActivity<T> implements IBaseNetView {
 
     private static final int NORMAL_STATE  = 0;
     private static final int LOADING_STATE = 1;
-    public static final  int ERROR_STATE   = 2;
+    private static final int ERROR_STATE   = 2;
+    public static final  int EMPTY_STATE   = 3;
 
-    private LottieAnimationView mLoadingAnimation;
-    private View                mErrorView;
-    private View                mLoadingView;
-    private ViewGroup           mNormalView;
 
-    private int currentState = NORMAL_STATE;
+    protected ViewGroup           parent;
+    private   LottieAnimationView mLoadingAnimation;
+    private   View                mErrorView;
+    private   View                mLoadingView;
+    private   ViewGroup           mNormalView;
+    protected View                mEmptyiew;
+
+    protected int currentState = NORMAL_STATE;
 
 
     @Override
@@ -83,10 +88,6 @@ public abstract class BaseNetActivity<T extends BaseSimplePresenter> extends Bas
         mLoadingAnimation.playAnimation();
     }
 
-    @Override
-    public void showEmpty() {
-
-    }
 
     @Override
     public void showError() {
@@ -108,7 +109,7 @@ public abstract class BaseNetActivity<T extends BaseSimplePresenter> extends Bas
         mNormalView.setVisibility(View.VISIBLE);
     }
 
-    private void hideCurrentView() {
+    protected void hideCurrentView() {
         switch (currentState) {
             case NORMAL_STATE:
                 if (mNormalView == null) {
@@ -122,6 +123,8 @@ public abstract class BaseNetActivity<T extends BaseSimplePresenter> extends Bas
                 break;
             case ERROR_STATE:
                 mErrorView.setVisibility(View.GONE);
+            case EMPTY_STATE:
+                mEmptyiew.setVisibility(View.GONE);
             default:
                 break;
         }

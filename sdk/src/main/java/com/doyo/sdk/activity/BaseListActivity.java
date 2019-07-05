@@ -1,4 +1,4 @@
-package com.doyo.sdk.fragment;
+package com.doyo.sdk.activity;
 
 import android.view.View;
 
@@ -13,16 +13,16 @@ import com.doyo.sdk.mvp.IBaseListView;
  *     e-mail : 984992087@qq.com
  *     company: 永无bug集团
  *     time   : 2019/05/20
- *     desc   : 网络请求加载状态view的fragment，主要用于显示加载中、空界面、加载失败等状态界面显示
+ *     desc   : 列表类型的activity. 除了有父类的加载中  加载错误  正常外,还有空数据情况时的情况
  *
  * </pre>
  */
 
-public abstract class BaseListFragment<T extends BaseSimplePresenter> extends BaseNetFragment<T> implements IBaseListView {
+public abstract class BaseListActivity<T extends BaseSimplePresenter> extends BaseNetActivity<T> implements IBaseListView {
 
     @Override
-    protected void lazyFetchData() {
-        super.lazyFetchData();
+    protected void initEventAndData() {
+        super.initEventAndData();
         View.inflate(_mActivity, R.layout.empty_view, parent);
         mEmptyiew = parent.findViewById(R.id.empty_group);
         mEmptyiew.setOnClickListener(v -> reload());
@@ -34,7 +34,6 @@ public abstract class BaseListFragment<T extends BaseSimplePresenter> extends Ba
 
     @Override
     public void showEmpty() {
-
         if (currentState == EMPTY_STATE) {
             return;
         }
@@ -43,6 +42,5 @@ public abstract class BaseListFragment<T extends BaseSimplePresenter> extends Ba
         currentState = EMPTY_STATE;
         mEmptyiew.setVisibility(View.VISIBLE);
     }
-
 
 }

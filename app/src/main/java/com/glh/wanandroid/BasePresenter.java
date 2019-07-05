@@ -1,7 +1,7 @@
 package com.glh.wanandroid;
 
-import com.doyo.sdk.mvp.BaseSimplePresenter;
 import com.doyo.sdk.mvp.AbstractView;
+import com.doyo.sdk.mvp.BaseSimplePresenter;
 import com.glh.wanandroid.core.DataManager;
 
 

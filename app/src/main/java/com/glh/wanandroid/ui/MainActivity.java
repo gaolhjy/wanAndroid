@@ -210,16 +210,16 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
 
     }
 
-    @Override
-    public void showAutoLoginView() {
-
-    }
-
-    @Override
-    public void showLogoutSuccess() {
-        CommonAlertDialog.newInstance().cancelDialog(true);
-        mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(false);
-    }
+//    @Override
+//    public void showAutoLoginView() {
+//
+//    }
+//
+//    @Override
+//    public void showLogoutSuccess() {
+//        CommonAlertDialog.newInstance().cancelDialog(true);
+//        mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(false);
+//    }
 
 
     @NonNull
@@ -230,11 +230,6 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
         DataManager manager = new DataManager(mHttpHelper, mPreferenceHelper);
         mPresenter = new MainPresenter(manager, this);
         return mPresenter;
-    }
-
-    @Override
-    public void showLoading() {
-
     }
 
 

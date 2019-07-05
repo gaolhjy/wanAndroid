@@ -1,7 +1,7 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.AbstractView;
+import com.doyo.sdk.mvp.IBaseNetView;
 import com.glh.wanandroid.bean.TodoDesData;
 
 /**
@@ -18,7 +18,7 @@ import com.glh.wanandroid.bean.TodoDesData;
 public interface AddToDoContract {
 
 
-    interface View extends AbstractView {
+    interface View extends IBaseNetView {
 
         /**
          * Show content

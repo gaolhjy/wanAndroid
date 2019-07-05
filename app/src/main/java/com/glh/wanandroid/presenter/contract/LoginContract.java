@@ -14,12 +14,21 @@ public interface LoginContract {
     interface View extends AbstractView {
 
         /**
+         * Show loading
+         */
+        void showLoading();
+
+        /**
+         * Show error
+         */
+        void showError();
+
+        /**
          * Show login data
-         *
          */
         void showLoginSuccess();
 
-        void  showErrorMes(String msg);
+        void showErrorMes(String msg);
     }
 
     interface Presenter extends AbstractPresenter<View> {

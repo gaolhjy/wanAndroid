@@ -6,7 +6,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.doyo.sdk.fragment.BaseNetFragment;
+import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.utils.JumpUtils;
 import com.doyo.sdk.utils.NetUtils;
@@ -41,7 +41,7 @@ import butterknife.BindView;
  *
  * </pre>
  */
-public class ProjectNetFragment extends BaseNetFragment<ProjectListPresenter> implements ProjectListContract.View, BaseQuickAdapter.RequestLoadMoreListener {
+public class ProjectNetFragment extends BaseListFragment<ProjectListPresenter> implements ProjectListContract.View, BaseQuickAdapter.RequestLoadMoreListener {
 
     @BindView(R.id.recycler_view)
     RecyclerView       mRecyclerView;

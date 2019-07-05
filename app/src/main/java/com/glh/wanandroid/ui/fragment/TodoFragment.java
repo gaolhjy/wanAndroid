@@ -7,7 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.doyo.sdk.fragment.BaseNetFragment;
+import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.utils.JumpUtils;
 import com.doyo.sdk.utils.NetUtils;
@@ -45,7 +45,7 @@ import butterknife.BindView;
  *
  * </pre>
  */
-public class TodoFragment extends BaseNetFragment<ToDoPresenter> implements ToDoContract.View,
+public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToDoContract.View,
         BaseQuickAdapter.RequestLoadMoreListener, HeaderBar.OnCustonClickListener {
 
     @BindView(R.id.header)

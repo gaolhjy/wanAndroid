@@ -1,7 +1,7 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.AbstractView;
+import com.doyo.sdk.mvp.IBaseListView;
 import com.glh.wanandroid.bean.KnowleData;
 
 import java.util.List;
@@ -20,7 +20,7 @@ import java.util.List;
 public interface KnowleContract {
 
 
-    interface View extends AbstractView {
+    interface View extends IBaseListView {
 
         /**
          * Show content

@@ -28,6 +28,17 @@ public interface HomeContract {
          */
         void showAutoLoginFail();
 
+
+        /**
+         * Show login view
+         */
+        void showLoginView();
+
+        /**
+         * Show logout view
+         */
+        void showLogoutView();
+
         /**
          * Show content
          *

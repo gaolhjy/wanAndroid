@@ -77,7 +77,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
                         setLoginStatus(false);
                         CookiesManager.clearAllCookies();
                         RxBus.getDefault().post(new LoginEvent(false));
-                        mView.showLogoutSuccess();
+                        mView.showLogoutView();
                     }
                 })
         );

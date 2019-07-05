@@ -43,6 +43,8 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
             return;
         }
 
+        mView.showLoading();
+
         addSubscribe(dataManager.login(username, password)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())

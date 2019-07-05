@@ -5,7 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.doyo.sdk.fragment.BaseNetFragment;
+import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.utils.NetUtils;
 import com.glh.wanandroid.R;
@@ -40,7 +40,7 @@ import butterknife.BindView;
  * </pre>
  */
 
-public class KnowleNetFragment extends BaseNetFragment<KnowleDetailPresenter>
+public class KnowleNetFragment extends BaseListFragment<KnowleDetailPresenter>
         implements KnowleDetailContract.View {
 
 
@@ -159,5 +159,15 @@ public class KnowleNetFragment extends BaseNetFragment<KnowleDetailPresenter>
         DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
         mPresenter = new KnowleDetailPresenter(dataManager, this);
         return mPresenter;
+    }
+
+    @Override
+    public void showLoadMoreError() {
+
+    }
+
+    @Override
+    public void showNoMoreData() {
+
     }
 }
