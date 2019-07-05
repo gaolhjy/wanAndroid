@@ -45,6 +45,12 @@ public interface AbstractView {
 
 
     /**
+     * Show empty
+     */
+    void showEmpty();
+
+
+    /**
      * Show login view
      */
     void showLoginView();

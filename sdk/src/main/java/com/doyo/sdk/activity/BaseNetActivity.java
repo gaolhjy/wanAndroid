@@ -83,7 +83,10 @@ public abstract class BaseNetActivity<T extends BaseSimplePresenter> extends Bas
         mLoadingAnimation.playAnimation();
     }
 
+    @Override
+    public void showEmpty() {
 
+    }
 
     @Override
     public void showError() {

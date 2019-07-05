@@ -46,6 +46,10 @@ public abstract class BaseSimpleActivity extends AbstractSimpleActivity
 
     }
 
+    @Override
+    public void showEmpty() {
+
+    }
 
     @Override
     public void showLoginView() {

@@ -25,6 +25,7 @@ public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends Bas
     private static final int NORMAL_STATE  = 0;
     private static final int LOADING_STATE = 1;
     public static final  int ERROR_STATE   = 2;
+    public static final  int EMPTY_STATE   = 3;
 
     private   LottieAnimationView mLoadingAnimation;
     protected ViewGroup           mNormalView;
@@ -41,7 +42,6 @@ public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends Bas
             return;
         }
 
-
         mNormalView = getView().findViewById(R.id.normal_view);
         if (mNormalView == null) {
             throw new IllegalStateException(
@@ -52,16 +52,19 @@ public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends Bas
                     "mNormalView's ParentView should be a ViewGroup.");
         }
         ViewGroup parent = (ViewGroup) mNormalView.getParent();
-        mEmptyiew = View.inflate(_mActivity, R.layout.empty_view, null);
         View.inflate(_mActivity, R.layout.loading_view, parent);
         View.inflate(_mActivity, R.layout.error_view, parent);
+        View.inflate(_mActivity, R.layout.empty_view, parent);
         mLoadingView = parent.findViewById(R.id.loading_group);
         mErrorView = parent.findViewById(R.id.error_group);
+        mEmptyiew = parent.findViewById(R.id.empty_group);
         TextView reloadTv = mErrorView.findViewById(R.id.error_reload_tv);
         reloadTv.setOnClickListener(v -> reload());
+        mEmptyiew.setOnClickListener(v -> reload());
         mLoadingAnimation = mLoadingView.findViewById(R.id.loading_animation);
         mErrorView.setVisibility(View.GONE);
         mLoadingView.setVisibility(View.GONE);
+        mEmptyiew.setVisibility(View.GONE);
         mNormalView.setVisibility(View.VISIBLE);
     }
 
@@ -100,6 +103,18 @@ public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends Bas
     }
 
     @Override
+    public void showEmpty() {
+
+        if (currentState == EMPTY_STATE) {
+            return;
+        }
+
+        hideCurrentView();
+        currentState = EMPTY_STATE;
+        mEmptyiew.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     public void showNormal() {
         if (currentState == NORMAL_STATE) {
             return;
@@ -123,6 +138,8 @@ public abstract class BaseNetFragment<T extends BaseSimplePresenter> extends Bas
                 break;
             case ERROR_STATE:
                 mErrorView.setVisibility(View.GONE);
+            case EMPTY_STATE:
+                mEmptyiew.setVisibility(View.GONE);
             default:
                 break;
         }

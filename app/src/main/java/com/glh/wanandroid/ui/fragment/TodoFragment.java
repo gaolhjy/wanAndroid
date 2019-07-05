@@ -211,12 +211,8 @@ public class TodoFragment extends BaseNetFragment<ToDoPresenter> implements ToDo
 
     @Override
     public void showNoMoreData() {
-
         if (isRefresh) {
-            mAdapter.setNewData(null);
-            showNormal();
-            mRecyclerView.setVisibility(View.VISIBLE);
-            mAdapter.setEmptyView(mEmptyiew);
+            showEmpty();
         } else {
             mAdapter.loadMoreEnd();
         }
