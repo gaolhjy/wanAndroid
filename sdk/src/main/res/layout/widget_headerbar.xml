@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/title_hight_lever"
+                android:background="@color/base_bg_white"
+    >
+
+    <ImageButton
+        android:id="@+id/btn_top_back"
+        android:layout_width="@dimen/title_back_width"
+        android:layout_height="@dimen/title_back_width"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:padding="15dp"
+        android:src="@drawable/gray_back"
+        />
+
+    <TextView
+        android:id="@+id/tv_top_back"
+        android:layout_width="@dimen/title_back_width"
+        android:layout_height="@dimen/title_back_width"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/color_323232"
+        android:visibility="gone"
+        android:textSize="16dp"
+        />
+
+    <Button
+        android:id="@+id/btn_top_back_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:background="@null"
+        android:drawableLeft="@drawable/icon_title_back_normal"
+        android:text="返回"
+        android:textColor="#3f3f3f"
+        android:textSize="16dp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/btn_top_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        android:text="标题"
+        android:textColor="@color/base_second_txt_color"
+        android:textSize="18dp"
+        />
+
+    <ImageButton
+        android:id="@+id/img_top_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginTop="5dp"
+        android:background="@null"
+        android:clickable="true"
+        android:gravity="center"
+        android:padding="5dp"
+        android:src="@drawable/icon_right_write"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/right_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:padding="10dp"
+        android:text="保存"
+        android:textColor="@color/base_txt_color"
+        android:textSize="16dp"
+        android:visibility="gone"
+        />
+
+    <RelativeLayout
+        android:id="@+id/message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_margin="5dp"
+        android:padding="5dp"
+        android:visibility="gone"
+        >
+
+        <ImageView
+            android:id="@+id/message_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/icon_message"
+            />
+
+        <ImageView
+            android:id="@+id/red_dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_alignTop="@id/message_icon"
+            android:layout_marginLeft="-10dp"
+            android:layout_toRightOf="@id/message_icon"
+            />
+    </RelativeLayout>
+
+</RelativeLayout>
