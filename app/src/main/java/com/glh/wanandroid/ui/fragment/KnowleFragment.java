@@ -82,6 +82,12 @@ public class KnowleFragment extends BaseListFragment3<KnowlePresenter,
 
     @Override
     protected void getData(int currentPage, boolean isShow, String id) {
+
+        //TODO  因为加载更多,加载是会一直添加数据. 需要重新疯转base类.暂时这样处理
+        if (currentPage > 1) {
+            mAdapter.loadMoreEnd();
+            return;
+        }
         mPresenter.getData(currentPage, id, isShow);
     }
 
