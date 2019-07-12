@@ -3,7 +3,7 @@ package com.glh.wanandroid.ui.fragment;
 import android.os.Bundle;
 
 import com.doyo.sdk.adapter.BaseCompatAdapter;
-import com.doyo.sdk.fragment.BaseListFragment22;
+import com.doyo.sdk.fragment.BaseListFragment3;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.constant.Constants;
@@ -27,7 +27,7 @@ import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
  * </pre>
  */
 
-public class KnowleNetFragment extends BaseListFragment22<KnowleDetailPresenter,
+public class KnowleNetFragment extends BaseListFragment3<KnowleDetailPresenter,
         ArticleListAdapter> {
 
     public static KnowleNetFragment getInstance(String id, String param2) {

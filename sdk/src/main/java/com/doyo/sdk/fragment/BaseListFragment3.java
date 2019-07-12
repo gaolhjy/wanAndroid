@@ -8,6 +8,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.doyo.sdk.R;
 import com.doyo.sdk.adapter.BaseCompatAdapter;
 import com.doyo.sdk.mvp.BaseSimplePresenter;
+import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.mvp.ResBaseListBean;
 import com.doyo.sdk.utils.NetUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
@@ -25,7 +27,8 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 public abstract class BaseListFragment3<P extends BaseSimplePresenter,
         A extends BaseCompatAdapter> extends BaseListFragment<P> implements
-        BaseQuickAdapter.RequestLoadMoreListener {
+        BaseQuickAdapter.RequestLoadMoreListener
+        , IBaseListView2<ResBaseListBean> {
 
     protected RecyclerView       mRecyclerView;
     protected SmartRefreshLayout mRefreshLayout;
@@ -113,6 +116,7 @@ public abstract class BaseListFragment3<P extends BaseSimplePresenter,
         mAdapter.loadMoreEnd();
     }
 
+
     @Override
     public void showEmpty() {
         if (currentState == EMPTY_STATE) {
@@ -121,6 +125,28 @@ public abstract class BaseListFragment3<P extends BaseSimplePresenter,
         hideCurrentView();
         currentState = EMPTY_STATE;
         mEmptyiew.setVisibility(View.VISIBLE);
+    }
+
+
+    @Override
+    public void showData(ResBaseListBean datas) {
+
+        if (mAdapter == null) {
+            return;
+        }
+
+        mRecyclerView.setVisibility(View.VISIBLE);
+
+        if (isRefresh) {
+            mAdapter.setEnableLoadMore(true);
+            mAdapter.setNewData(datas.datas);
+        } else {
+            mAdapter.loadMoreComplete();
+            mAdapter.addData(datas.datas);
+        }
+
+        showNormal();
+
     }
 
 }

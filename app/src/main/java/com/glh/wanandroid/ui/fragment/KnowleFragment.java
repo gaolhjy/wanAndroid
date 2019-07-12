@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.doyo.sdk.adapter.BaseCompatAdapter;
-import com.doyo.sdk.fragment.BaseListFragment3;
+import com.doyo.sdk.fragment.BaseListFragment2;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.mvp.IBaseListView2;
 import com.glh.wanandroid.R;
@@ -32,7 +32,7 @@ import java.util.List;
  * </pre>
  */
 
-public class KnowleFragment extends BaseListFragment3<KnowlePresenter,
+public class KnowleFragment extends BaseListFragment2<KnowlePresenter,
         KnowledgeHierarchyListAdapter> implements IBaseListView2<List<KnowleData>> {
 
     public static KnowleFragment getInstance(String param1, String param2) {
@@ -56,6 +56,7 @@ public class KnowleFragment extends BaseListFragment3<KnowlePresenter,
 
     @Override
     protected void getInitData() {
+        isHavaMore = false;
     }
 
 
@@ -83,11 +84,11 @@ public class KnowleFragment extends BaseListFragment3<KnowlePresenter,
     @Override
     protected void getData(int currentPage, boolean isShow, String id) {
 
-        //TODO  因为加载更多,加载是会一直添加数据. 需要重新疯转base类.暂时这样处理
-        if (currentPage > 1) {
-            mAdapter.loadMoreEnd();
-            return;
-        }
+        //        //TODO  因为加载更多,加载是会一直添加数据. 需要重新疯转base类.暂时这样处理
+        //        if (currentPage > 1) {
+        //            mAdapter.loadMoreEnd();
+        //            return;
+        //        }
         mPresenter.getData(currentPage, id, isShow);
     }
 

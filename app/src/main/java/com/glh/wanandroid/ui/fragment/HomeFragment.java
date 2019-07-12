@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.doyo.sdk.adapter.BaseCompatAdapter;
-import com.doyo.sdk.fragment.BaseListFragment22;
+import com.doyo.sdk.fragment.BaseListFragment3;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.rx.RxBus;
 import com.doyo.sdk.utils.GlideImageLoader;
@@ -48,7 +48,7 @@ import java.util.List;
  * </pre>
  */
 
-public class HomeFragment extends BaseListFragment22<HomePresenter, ArticleListAdapter> implements HomeContract.View {
+public class HomeFragment extends BaseListFragment3<HomePresenter, ArticleListAdapter> implements HomeContract.View {
 
     private List<FeedArticleData> mFeedArticleDataList;
     private Banner                mBanner;
