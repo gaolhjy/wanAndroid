@@ -1,15 +1,12 @@
 package com.glh.wanandroid.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.doyo.sdk.fragment.BaseListFragment;
+import com.doyo.sdk.adapter.BaseCompatAdapter;
+import com.doyo.sdk.fragment.BaseListFragment3;
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.utils.JumpUtils;
-import com.doyo.sdk.utils.NetUtils;
+import com.doyo.sdk.mvp.IBaseListView2;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.KnowleData;
 import com.glh.wanandroid.constant.Constants;
@@ -20,15 +17,9 @@ import com.glh.wanandroid.core.http.HttpHelperImpl;
 import com.glh.wanandroid.core.prefs.PreferenceHelper;
 import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.KnowlePresenter;
-import com.glh.wanandroid.presenter.contract.KnowleContract;
-import com.glh.wanandroid.ui.activity.KnowleDetailActivity;
 import com.glh.wanandroid.ui.adapter.KnowledgeHierarchyListAdapter;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
-import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * <pre>
@@ -41,17 +32,8 @@ import butterknife.BindView;
  * </pre>
  */
 
-public class KnowleFragment extends BaseListFragment<KnowlePresenter>
-        implements KnowleContract.View, BaseQuickAdapter.RequestLoadMoreListener {
-
-    @BindView(R.id.recycler_view)
-    RecyclerView       mRecyclerView;
-    @BindView(R.id.normal_view)
-    SmartRefreshLayout mRefreshLayout;
-
-    private List<KnowleData>              mKnowledgeHierarchyDataList;
-    private KnowledgeHierarchyListAdapter mAdapter;
-
+public class KnowleFragment extends BaseListFragment3<KnowlePresenter,
+        KnowledgeHierarchyListAdapter> implements IBaseListView2<List<KnowleData>> {
 
     public static KnowleFragment getInstance(String param1, String param2) {
         KnowleFragment fragment = new KnowleFragment();
@@ -64,73 +46,26 @@ public class KnowleFragment extends BaseListFragment<KnowlePresenter>
 
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_knowledgehierarchy;
-    }
-
-    @Override
-    protected void initViews() {
-        initRecyclerView();
-    }
-
-    @Override
-    protected void lazyFetchData() {
-        super.lazyFetchData();
-        setRefresh();
-        mPresenter.autoRefresh(true);
-        if (NetUtils.isNetworkConnected()) {
-            showLoading();
-        }
-    }
-
-    private void setRefresh() {
-
-        mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.autoRefresh(false);
-            refreshLayout.finishRefresh(1000);
-        });
-    }
-
-
-    private void initRecyclerView() {
-        mKnowledgeHierarchyDataList = new ArrayList<>();
-        mAdapter = new KnowledgeHierarchyListAdapter(R.layout.item_knowledge_hierarchy,
-                mKnowledgeHierarchyDataList);
+    protected BaseCompatAdapter getAbstractAdapter() {
+        mAdapter = new KnowledgeHierarchyListAdapter(R.layout.item_knowledge_hierarchy, null);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startDetailPager(view,
                 position));
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnLoadMoreListener(this, mRecyclerView);
+        return mAdapter;
     }
+
+
+    @Override
+    protected void getInitData() {
+    }
+
 
     private void startDetailPager(View view, int position) {
         if (mAdapter.getData().size() <= 0 || mAdapter.getData().size() <= position) {
             return;
         }
 
-        KnowleData data = mAdapter.getData().get(position);
-        JumpUtils.JumpToActivity(_mActivity, KnowleDetailActivity.class, data);
-
-    }
-
-
-    @Override
-    public void showKnowHierarchyList(List<KnowleData> dataList, boolean isRefresh) {
-
-        mRecyclerView.setVisibility(View.VISIBLE);
-
-        if (mAdapter == null) {
-            return;
-        }
-
-        if (isRefresh) {
-            mAdapter.replaceData(dataList);
-        } else {
-            mAdapter.addData(dataList);
-        }
-
-        showNormal();
+        //        KnowleData data = mAdapter.getData().get(position);
+        //        JumpUtils.JumpToActivity(_mActivity, KnowleDetailActivity.class, data);
 
     }
 
@@ -144,23 +79,30 @@ public class KnowleFragment extends BaseListFragment<KnowlePresenter>
         return mPresenter;
     }
 
+
     @Override
-    public void reload() {
-        mPresenter.autoRefresh(false);
+    protected void getData(int currentPage, boolean isShow, String id) {
+        mPresenter.getData(currentPage, id, isShow);
     }
 
     @Override
-    public void onLoadMoreRequested() {
-        mAdapter.loadMoreEnd();
-    }
+    public void showData(List<KnowleData> data) {
 
-    @Override
-    public void showLoadMoreError() {
+        if (mAdapter == null) {
+            return;
+        }
 
-    }
+        mRecyclerView.setVisibility(View.VISIBLE);
 
-    @Override
-    public void showNoMoreData() {
+        if (isRefresh) {
+            mAdapter.setEnableLoadMore(true);
+            mAdapter.setNewData(data);
+        } else {
+            mAdapter.loadMoreComplete();
+            mAdapter.addData(data);
+        }
+
+        showNormal();
 
     }
 }

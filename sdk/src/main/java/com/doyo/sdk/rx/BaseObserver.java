@@ -7,7 +7,7 @@ import com.doyo.sdk.global.GlobalApplication;
 import com.doyo.sdk.http.exception.OtherException;
 import com.doyo.sdk.http.exception.ServerException;
 import com.doyo.sdk.mvp.AbstractView;
-import com.doyo.sdk.mvp.IBaseListView;
+import com.doyo.sdk.mvp.IBaseListView2;
 import com.doyo.sdk.mvp.IBaseNetView;
 
 import io.reactivex.observers.ResourceObserver;
@@ -51,6 +51,7 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
 
     @Override
     public void onError(Throwable e) {
+
         e.printStackTrace();
 
         if (mView == null) {
@@ -79,8 +80,8 @@ public abstract class BaseObserver<T> extends ResourceObserver<T> {
             }
         }
 
-        if (mView instanceof IBaseListView) {
-            ((IBaseListView) mView).showLoadMoreError();
+        if (mView instanceof IBaseListView2) {
+            ((IBaseListView2) mView).showLoadMoreError();
         }
     }
 

@@ -45,9 +45,11 @@ public class KnowledgeHierarchyListAdapter extends BaseCompatAdapter<KnowleData,
 
         StringBuilder content = new StringBuilder();
 
-        for (KnowleData data : item.children) {
+        List<KnowleData> children = item.children;
+        for (KnowleData data : children) {
             content.append(data.name).append("   ");
         }
+
         helper.setText(R.id.item_knowledge_hierarchy_content, content.toString());
     }
 

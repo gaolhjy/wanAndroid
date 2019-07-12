@@ -20,6 +20,7 @@ import com.doyo.sdk.mvp.IBaseListView;
 
 public abstract class BaseListFragment<T extends BaseSimplePresenter> extends BaseNetFragment<T> implements IBaseListView {
 
+
     @Override
     protected void lazyFetchData() {
         super.lazyFetchData();

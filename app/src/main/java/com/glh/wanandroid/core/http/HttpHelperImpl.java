@@ -1,16 +1,16 @@
 package com.glh.wanandroid.core.http;
 
 import com.doyo.sdk.mvp.ResBaseBean;
+import com.doyo.sdk.mvp.ResBaseListBean;
 import com.glh.wanandroid.bean.BannerData;
+import com.glh.wanandroid.bean.FeedArticleData;
 import com.glh.wanandroid.bean.FeedArticleListData;
 import com.glh.wanandroid.bean.KnowleData;
 import com.glh.wanandroid.bean.LoginData;
 import com.glh.wanandroid.bean.NaviData;
 import com.glh.wanandroid.bean.ProjectData;
-import com.glh.wanandroid.bean.ProjectListData;
 import com.glh.wanandroid.bean.ToDoListData;
 import com.glh.wanandroid.bean.TodoDesData;
-import com.glh.wanandroid.bean.WxArticleListData;
 import com.glh.wanandroid.bean.WxNameListData;
 import com.glh.wanandroid.core.http.api.GeeksApis;
 
@@ -81,7 +81,7 @@ public class HttpHelperImpl implements HttpHelper {
     }
 
     @Override
-    public Observable<ResBaseBean<FeedArticleListData>> getKnowledgeHierarchyDetail(int pageNum,
+    public Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getKnowledgeHierarchyDetail(int pageNum,
                                                                                     String id) {
         return mGeeksApis.getKnowledgeHierarchyDetail(pageNum, id);
     }
@@ -97,7 +97,7 @@ public class HttpHelperImpl implements HttpHelper {
     }
 
     @Override
-    public Observable<ResBaseBean<ProjectListData>> getProjectListData(int pageNum, String cid) {
+    public Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getProjectListData(int pageNum, String cid) {
         return mGeeksApis.getProjectListData(pageNum, cid);
     }
 
@@ -107,7 +107,7 @@ public class HttpHelperImpl implements HttpHelper {
     }
 
     @Override
-    public Observable<ResBaseBean<WxArticleListData>> getWxArticleListData(String id, int pager) {
+    public Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getWxArticleListData(String id, int pager) {
         return mGeeksApis.getWxArticleListData(id, pager);
     }
 

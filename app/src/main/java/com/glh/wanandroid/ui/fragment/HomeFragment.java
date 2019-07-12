@@ -2,20 +2,17 @@ package com.glh.wanandroid.ui.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.doyo.sdk.fragment.BaseListFragment;
+import com.doyo.sdk.adapter.BaseCompatAdapter;
+import com.doyo.sdk.fragment.BaseListFragment22;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.rx.RxBus;
 import com.doyo.sdk.utils.GlideImageLoader;
 import com.doyo.sdk.utils.JumpUtils;
-import com.doyo.sdk.utils.NetUtils;
 import com.doyo.sdk.utils.UiUtils;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.BannerData;
@@ -33,15 +30,12 @@ import com.glh.wanandroid.presenter.HomePresenter;
 import com.glh.wanandroid.presenter.contract.HomeContract;
 import com.glh.wanandroid.ui.activity.LoginActivity;
 import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import butterknife.BindView;
 
 /**
  * <pre>
@@ -54,16 +48,9 @@ import butterknife.BindView;
  * </pre>
  */
 
-public class HomeFragment extends BaseListFragment<HomePresenter> implements HomeContract.View,
-        BaseQuickAdapter.RequestLoadMoreListener {
-
-    @BindView(R.id.normal_view)
-    SmartRefreshLayout mRefreshLayout;
-    @BindView(R.id.main_pager_recycler_view)
-    RecyclerView       mRecyclerView;
+public class HomeFragment extends BaseListFragment22<HomePresenter, ArticleListAdapter> implements HomeContract.View {
 
     private List<FeedArticleData> mFeedArticleDataList;
-    private ArticleListAdapter    mAdapter;
     private Banner                mBanner;
     private List<String>          mBannerTitleList;
     private List<String>          mBannerUrlList;
@@ -88,43 +75,14 @@ public class HomeFragment extends BaseListFragment<HomePresenter> implements Hom
 
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_mainpager;
-    }
-
-    @Override
-    protected void initViews() {
-        initRecyclerView();
-    }
-
-    @Override
-    protected void lazyFetchData() {
-        super.lazyFetchData();
-        setRefresh();
-        if (loggedAndNotRebuilt()) {
-            mPresenter.loadMainPagerData();
-        } else {
-            mPresenter.autoRefresh(true);
-        }
-
-        if (NetUtils.isNetworkConnected()) {
-            showLoading();
-        }
-    }
-
-
-    @Override
-    public void reload() {
-        mPresenter.autoRefresh(false);
-    }
-
-    private void initRecyclerView() {
+    protected BaseCompatAdapter getAbstractAdapter() {
 
         mFeedArticleDataList = new ArrayList<>();
         mBannerUrlList = new ArrayList<>();
         mBannerTitleList = new ArrayList<>();
 
-        mAdapter = new ArticleListAdapter(R.layout.item_search_pager, mFeedArticleDataList);
+        mAdapter = new ArticleListAdapter(R.layout.item_search_pager, null);
+
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> clickChildEvent(view,
                 position));
 
@@ -133,10 +91,6 @@ public class HomeFragment extends BaseListFragment<HomePresenter> implements Hom
         });
 
 
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        mRecyclerView.setHasFixedSize(true);
-
-        mAdapter.setOnLoadMoreListener(this, mRecyclerView);
         LinearLayout mHeaderGroup =
                 ((LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.head_banner,
                         null));
@@ -160,9 +114,16 @@ public class HomeFragment extends BaseListFragment<HomePresenter> implements Hom
 
         mHeaderGroup.removeView(mBanner);
         mAdapter.addHeaderView(mBanner);
-        mRecyclerView.setAdapter(mAdapter);
+
+        return mAdapter;
+    }
+
+
+    @Override
+    protected void getInitData() {
 
     }
+
 
     private void clickChildEvent(View view, int position) {
         switch (view.getId()) {
@@ -197,13 +158,6 @@ public class HomeFragment extends BaseListFragment<HomePresenter> implements Hom
                 && !isRecreate;
     }
 
-    private void setRefresh() {
-        mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            mPresenter.autoRefresh(false);
-            refreshLayout.finishRefresh(1000);
-        });
-    }
-
 
     @Override
     public void showAutoLoginSuccess() {
@@ -218,27 +172,6 @@ public class HomeFragment extends BaseListFragment<HomePresenter> implements Hom
 
     }
 
-    @Override
-    public void showArticleList(FeedArticleListData feedArticleListData, boolean isRefresh) {
-
-        if (mPresenter.getCurrentPage() == Constants.TYPE_MAIN_PAGER) {
-            mRecyclerView.setVisibility(View.VISIBLE);
-        } else {
-            mRecyclerView.setVisibility(View.INVISIBLE);
-        }
-        if (mAdapter == null) {
-            return;
-        }
-        if (isRefresh) {
-            mFeedArticleDataList = feedArticleListData.datas;
-            mAdapter.replaceData(feedArticleListData.datas);
-        } else {
-            mFeedArticleDataList.addAll(feedArticleListData.datas);
-            mAdapter.addData(feedArticleListData.datas);
-        }
-
-        showNormal();
-    }
 
     @Override
     public void showCollectArticleData(int position, FeedArticleData feedArticleData,
@@ -272,16 +205,6 @@ public class HomeFragment extends BaseListFragment<HomePresenter> implements Hom
         }
     }
 
-    @Override
-    public void showLoadMoreError() {
-        mAdapter.closeLoadAnimation();
-        mAdapter.loadMoreFail();
-    }
-
-    @Override
-    public void showNoMoreData() {
-        mAdapter.loadMoreEnd();
-    }
 
     @Override
     public void showBannerData(List<BannerData> bannerDataList) {
@@ -311,6 +234,30 @@ public class HomeFragment extends BaseListFragment<HomePresenter> implements Hom
 
 
     @Override
+    public void showArticleList(FeedArticleListData datas) {
+
+        if (mPresenter.getCurrentPage() == Constants.TYPE_MAIN_PAGER) {
+            mRecyclerView.setVisibility(View.VISIBLE);
+        } else {
+            mRecyclerView.setVisibility(View.INVISIBLE);
+        }
+        if (mAdapter == null) {
+            return;
+        }
+        if (isRefresh) {
+            //            mFeedArticleDataList = feedArticleListData.datas;
+            mAdapter.replaceData(datas.datas);
+        } else {
+            //            mFeedArticleDataList.addAll(feedArticleListData.datas);
+            mAdapter.addData(datas.datas);
+        }
+
+        showNormal();
+
+    }
+
+
+    @Override
     protected AbstractPresenter initPresenter() {
         PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
         HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
@@ -320,8 +267,9 @@ public class HomeFragment extends BaseListFragment<HomePresenter> implements Hom
     }
 
     @Override
-    public void onLoadMoreRequested() {
-        mAdapter.loadMoreComplete();
-        mPresenter.loadMore();
+    protected void getData(int currentPage, boolean isShow, String id) {
+        mPresenter.getFeedArticleList(false);
+        mPresenter.getBannerData(false);
     }
+
 }

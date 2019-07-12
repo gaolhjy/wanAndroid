@@ -1,10 +1,7 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.IBaseListView;
-import com.glh.wanandroid.bean.KnowleData;
-
-import java.util.List;
+import com.doyo.sdk.mvp.IBaseListView2;
 
 /**
  * <pre>
@@ -20,17 +17,17 @@ import java.util.List;
 public interface KnowleContract {
 
 
-    interface View extends IBaseListView {
+//    interface View extends IBaseListView {
+//
+//        /**
+//         * Show content
+//         */
+//        void showKnowHierarchyList(List<KnowleData> knowledgeHierarchyData,
+//                                   boolean isRefresh);
+//
+//    }
 
-        /**
-         * Show content
-         */
-        void showKnowHierarchyList(List<KnowleData> knowledgeHierarchyData,
-                                   boolean isRefresh);
-
-    }
-
-    interface Presenter extends AbstractPresenter<KnowleContract.View> {
+    interface Presenter extends AbstractPresenter<IBaseListView2> {
 
 
         /**
@@ -38,7 +35,7 @@ public interface KnowleContract {
          *
          * @param isShowError If show error
          */
-        void getKnowHierarchyList(boolean isShowError);
+        void getData(boolean isShowError);
 
 
     }

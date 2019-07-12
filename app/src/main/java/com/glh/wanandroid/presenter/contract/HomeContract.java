@@ -1,7 +1,8 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.IBaseListView;
+import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.mvp.ResBaseListBean;
 import com.glh.wanandroid.bean.BannerData;
 import com.glh.wanandroid.bean.FeedArticleData;
 import com.glh.wanandroid.bean.FeedArticleListData;
@@ -16,7 +17,7 @@ import java.util.List;
 
 public interface HomeContract {
 
-    interface View extends IBaseListView {
+    interface View extends IBaseListView2<ResBaseListBean>{
 
         /**
          * Show auto login success
@@ -43,9 +44,8 @@ public interface HomeContract {
          * Show content
          *
          * @param feedArticleListData FeedArticleListData
-         * @param isRefresh           If refresh
          */
-        void showArticleList(FeedArticleListData feedArticleListData, boolean isRefresh);
+        void showArticleList(FeedArticleListData feedArticleListData);
 
         /**
          * Show collect article data
@@ -105,11 +105,6 @@ public interface HomeContract {
         void getFeedArticleList(boolean isShowError);
 
         /**
-         * Load more data
-         */
-        void loadMoreData();
-
-        /**
          * Add collect article
          *
          * @param position        Position
@@ -132,17 +127,6 @@ public interface HomeContract {
          */
         void getBannerData(boolean isShowError);
 
-        /**
-         * Auto refresh
-         *
-         * @param isShowError If show error
-         */
-        void autoRefresh(boolean isShowError);
-
-        /**
-         * Load more
-         */
-        void loadMore();
 
     }
 

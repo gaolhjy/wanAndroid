@@ -1,16 +1,16 @@
 package com.glh.wanandroid.core.http;
 
 import com.doyo.sdk.mvp.ResBaseBean;
+import com.doyo.sdk.mvp.ResBaseListBean;
 import com.glh.wanandroid.bean.BannerData;
+import com.glh.wanandroid.bean.FeedArticleData;
 import com.glh.wanandroid.bean.FeedArticleListData;
 import com.glh.wanandroid.bean.KnowleData;
 import com.glh.wanandroid.bean.LoginData;
 import com.glh.wanandroid.bean.NaviData;
 import com.glh.wanandroid.bean.ProjectData;
-import com.glh.wanandroid.bean.ProjectListData;
 import com.glh.wanandroid.bean.ToDoListData;
 import com.glh.wanandroid.bean.TodoDesData;
-import com.glh.wanandroid.bean.WxArticleListData;
 import com.glh.wanandroid.bean.WxNameListData;
 
 import java.util.List;
@@ -120,7 +120,7 @@ public interface HttpHelper {
      * cid 分类的id，上述二级目录的id
      * 页码：拼接在链接上，从0开始。
      */
-    Observable<ResBaseBean<FeedArticleListData>> getKnowledgeHierarchyDetail(int pageNum,
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getKnowledgeHierarchyDetail(int pageNum,
                                                                              String id);
 
 
@@ -151,7 +151,7 @@ public interface HttpHelper {
      * cid 分类的id，上面项目分类接口
      * 页码：拼接在链接中，从1开始。
      */
-    Observable<ResBaseBean<ProjectListData>> getProjectListData(int pageNum, String cid);
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getProjectListData(int pageNum, String cid);
 
 
     /**
@@ -169,7 +169,7 @@ public interface HttpHelper {
      * https://wanandroid.com/wxarticle/list/408/1/json
      * 方法： GET
      */
-    Observable<ResBaseBean<WxArticleListData>> getWxArticleListData(String id, int pager);
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getWxArticleListData(String id, int pager);
 
     /**
      * 未完成 Todo 列表
@@ -226,7 +226,7 @@ public interface HttpHelper {
      * type: 0
      */
     Observable<ResBaseBean<TodoDesData>> updateTodoData(String id, String title, String content,
-                                                         String date, int type);
+                                                        String date, int type);
 
     /**
      * 删除一条Todo

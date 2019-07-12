@@ -40,7 +40,6 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
 
     private DataManager       mDataManager;
     private HomeContract.View mView;
-    private boolean           isRefresh = true;
     private int               mCurrentPage;
 
     public HomePresenter(DataManager dataManager, HomeContract.View view) {
@@ -53,6 +52,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
     public String getLoginPassword() {
         return mDataManager.getLoginPassword();
     }
+
 
     @Override
     public String getLoginAccount() {
@@ -108,7 +108,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
                         ResBaseBean<FeedArticleListData> feedArticleListResponse =
                                 CommonUtils.cast(map.get(Constants.ARTICLE_DATA));
                         if (feedArticleListResponse != null) {
-                            mView.showArticleList(feedArticleListResponse.getData(), isRefresh);
+                            mView.showArticleList(feedArticleListResponse.getData());
                         }
                     }
 
@@ -128,41 +128,41 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
         mView.showAutoLoginSuccess();
     }
 
-    @Override
-    public void loadMoreData() {
-
-//        addSubscribe(mDataManager.getFeedArticleList(mCurrentPage)
-//                .compose(RxUtils.rxSchedulerHelper())
-//                .compose(RxUtils.handleResult())
-//                .filter(feedArticleListResponse -> mView != null)
-//                .subscribeWith(new BaseObserver<FeedArticleListData>(mView,
-//                        AppContext.getInstance().getString(R.string
-//                                .failed_to_obtain_article_list),
-//                        false) {
-//                    @Override
-//                    public void onNext(FeedArticleListData feedArticleListData) {
-//                        if (feedArticleListData.datas.size() > 0) {
-//                            mView.showArticleList(feedArticleListData, isRefresh);
-//                        } else {
-//                            mView.showNoMoreData();
-//                        }
-//                    }
-//                }));
-
-
-        addSubscribe(mDataManager.getFeedArticleList(mCurrentPage)
-                .compose(RxUtils.rxSchedulerHelper())
-                .compose(RxUtils.handleResult())
-                .filter(feedArticleListResponse -> mView != null)
-                .subscribe(feedArticleListData -> {
-                    if (feedArticleListData.datas.size() > 0) {
-                        mView.showArticleList(feedArticleListData, isRefresh);
-                    } else {
-                        mView.showNoMoreData();
-                    }
-                }, throwable -> mView.showLoadMoreError()));
-
-    }
+    //    @Override
+    //    public void loadMoreData() {
+    //
+    //        //        addSubscribe(mDataManager.getFeedArticleList(mCurrentPage)
+    //        //                .compose(RxUtils.rxSchedulerHelper())
+    //        //                .compose(RxUtils.handleResult())
+    //        //                .filter(feedArticleListResponse -> mView != null)
+    //        //                .subscribeWith(new BaseObserver<FeedArticleListData>(mView,
+    //        //                        AppContext.getInstance().getString(R.string
+    //        //                                .failed_to_obtain_article_list),
+    //        //                        false) {
+    //        //                    @Override
+    //        //                    public void onNext(FeedArticleListData feedArticleListData) {
+    //        //                        if (feedArticleListData.datas.size() > 0) {
+    //        //                            mView.showArticleList(feedArticleListData, isRefresh);
+    //        //                        } else {
+    //        //                            mView.showNoMoreData();
+    //        //                        }
+    //        //                    }
+    //        //                }));
+    //
+    //
+    //        addSubscribe(mDataManager.getFeedArticleList(mCurrentPage)
+    //                .compose(RxUtils.rxSchedulerHelper())
+    //                .compose(RxUtils.handleResult())
+    //                .filter(feedArticleListResponse -> mView != null)
+    //                .subscribe(feedArticleListData -> {
+    //                    if (feedArticleListData.datas.size() > 0) {
+    //                        mView.showArticleList(feedArticleListData, isRefresh);
+    //                    } else {
+    //                        mView.showNoMoreData();
+    //                    }
+    //                }, throwable -> mView.showLoadMoreError()));
+    //
+    //    }
 
     @Override
     public void addCollectArticle(int position, FeedArticleData feedArticleData) {
@@ -200,20 +200,20 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
     }
 
 
-    @Override
-    public void autoRefresh(boolean isShowError) {
-        isRefresh = true;
-        mCurrentPage = 0;
-        getBannerData(isShowError);
-        getFeedArticleList(isShowError);
-    }
-
-    @Override
-    public void loadMore() {
-        isRefresh = false;
-        mCurrentPage++;
-        loadMoreData();
-    }
+    //    @Override
+    //    public void autoRefresh(boolean isShowError) {
+    //        isRefresh = true;
+    //        mCurrentPage = 0;
+    //        getBannerData(isShowError);
+    //        getFeedArticleList(isShowError);
+    //    }
+    //
+    //    @Override
+    //    public void loadMore() {
+    //        isRefresh = false;
+    //        mCurrentPage++;
+    //        loadMoreData();
+    //    }
 
     @Override
     public void getBannerData(boolean isShowError) {
@@ -243,7 +243,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
                         isShowError) {
                     @Override
                     public void onNext(FeedArticleListData feedArticleListData) {
-                        mView.showArticleList(feedArticleListData, isRefresh);
+                        mView.showArticleList(feedArticleListData);
                     }
                 }));
     }
@@ -259,4 +259,5 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
         map.put(Constants.ARTICLE_DATA, feedArticleListResponse);
         return map;
     }
+
 }

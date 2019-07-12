@@ -2,16 +2,16 @@ package com.glh.wanandroid.core.http.api;
 
 
 import com.doyo.sdk.mvp.ResBaseBean;
+import com.doyo.sdk.mvp.ResBaseListBean;
 import com.glh.wanandroid.bean.BannerData;
+import com.glh.wanandroid.bean.FeedArticleData;
 import com.glh.wanandroid.bean.FeedArticleListData;
 import com.glh.wanandroid.bean.KnowleData;
 import com.glh.wanandroid.bean.LoginData;
 import com.glh.wanandroid.bean.NaviData;
 import com.glh.wanandroid.bean.ProjectData;
-import com.glh.wanandroid.bean.ProjectListData;
 import com.glh.wanandroid.bean.ToDoListData;
 import com.glh.wanandroid.bean.TodoDesData;
-import com.glh.wanandroid.bean.WxArticleListData;
 import com.glh.wanandroid.bean.WxNameListData;
 
 import java.util.List;
@@ -135,7 +135,8 @@ public interface GeeksApis {
      * 页码：拼接在链接上，从0开始。
      */
     @GET("article/list/{pageNum}/json")
-    Observable<ResBaseBean<FeedArticleListData>> getKnowledgeHierarchyDetail(@Path("pageNum") int pageNum, @Query("cid") String id);
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getKnowledgeHierarchyDetail(@Path(
+            "pageNum") int pageNum, @Query("cid") String id);
 
 
     /**
@@ -168,7 +169,7 @@ public interface GeeksApis {
      * 页码：拼接在链接中，从1开始。
      */
     @GET("project/list/{pageNum}/json")
-    Observable<ResBaseBean<ProjectListData>> getProjectListData(@Path("pageNum") int pageNum
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getProjectListData(@Path("pageNum") int pageNum
             , @Query("cid") String cid);
 
 
@@ -189,8 +190,8 @@ public interface GeeksApis {
      * 方法： GET
      */
     @GET("wxarticle/list/{id}/{pager}/json")
-    Observable<ResBaseBean<WxArticleListData>> getWxArticleListData(@Path("id") String id,
-                                                                    @Path("pager") int pager);
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getWxArticleListData(@Path("id") String id,
+                                                                                   @Path("pager") int pager);
 
 
     /**
@@ -255,10 +256,10 @@ public interface GeeksApis {
      */
     @POST("/lg/todo/update/{id}/json")
     Observable<ResBaseBean<TodoDesData>> updateTodoData(@Path("id") String id,
-                                                         @Query("title") String title,
-                                                         @Query("content") String content,
-                                                         @Query("date") String date,
-                                                         @Query("type") int type);
+                                                        @Query("title") String title,
+                                                        @Query("content") String content,
+                                                        @Query("date") String date,
+                                                        @Query("type") int type);
 
     /**
      * 删除一条Todo
@@ -283,7 +284,7 @@ public interface GeeksApis {
      */
     @POST("/lg/todo/done/{id}/json")
     Observable<ResBaseBean<TodoDesData>> changeTodoData(@Path("id") String id,
-                                                         @Query("status") int status);
+                                                        @Query("status") int status);
 
 
 }

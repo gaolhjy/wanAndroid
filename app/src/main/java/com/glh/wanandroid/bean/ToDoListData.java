@@ -12,7 +12,7 @@ import java.util.List;
  *
  * </pre>
  */
-public class ToDoListData {
+public class ToDoListData  {
     public int               curPage;
     public int               offset;
     public boolean           over;
