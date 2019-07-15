@@ -24,8 +24,7 @@ import com.glh.wanandroid.utils.RxUtils;
 
 public class MyCollectPresenter extends BasePresenter<MyCollectContract.View> implements MyCollectContract.Presenter {
 
-    protected DataManager            mDataManager;
-    protected MyCollectContract.View mView;
+    private MyCollectContract.View mView;
 
 
     public MyCollectPresenter(DataManager dataManager, MyCollectContract.View view) {

@@ -17,7 +17,7 @@ import java.util.List;
 
 public interface HomeContract {
 
-    interface View extends IBaseListView2<ResBaseListBean>{
+    interface View extends IBaseListView2<ResBaseListBean> {
 
         /**
          * Show auto login success
@@ -102,7 +102,7 @@ public interface HomeContract {
          *
          * @param isShowError If show error
          */
-        void getFeedArticleList(boolean isShowError);
+        void getFeedArticleList(int pager, boolean isShowError);
 
         /**
          * Add collect article
@@ -126,7 +126,6 @@ public interface HomeContract {
          * @param isShowError If show error
          */
         void getBannerData(boolean isShowError);
-
 
     }
 

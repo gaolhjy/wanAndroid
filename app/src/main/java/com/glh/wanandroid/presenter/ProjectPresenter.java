@@ -25,7 +25,7 @@ import java.util.List;
 public class ProjectPresenter extends BasePresenter<ProjectContract.View>
         implements ProjectContract.Presenter {
 
-    private DataManager          mDataManager;
+
     private ProjectContract.View mView;
 
 

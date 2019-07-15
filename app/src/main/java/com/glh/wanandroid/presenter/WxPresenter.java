@@ -25,9 +25,7 @@ import java.util.List;
 public class WxPresenter extends BasePresenter<WxContract.View>
         implements WxContract.Presenter {
 
-    private DataManager     mDataManager;
     private WxContract.View mView;
-
 
     public WxPresenter(DataManager dataManager, WxContract.View view) {
         super(dataManager);

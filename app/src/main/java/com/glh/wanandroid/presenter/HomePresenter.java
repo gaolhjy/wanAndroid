@@ -38,9 +38,9 @@ import io.reactivex.Observable;
 public class HomePresenter extends BasePresenter<HomeContract.View>
         implements HomeContract.Presenter {
 
-    private DataManager       mDataManager;
+
     private HomeContract.View mView;
-    private int               mCurrentPage;
+
 
     public HomePresenter(DataManager dataManager, HomeContract.View view) {
         super(dataManager);
@@ -128,41 +128,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
         mView.showAutoLoginSuccess();
     }
 
-    //    @Override
-    //    public void loadMoreData() {
-    //
-    //        //        addSubscribe(mDataManager.getFeedArticleList(mCurrentPage)
-    //        //                .compose(RxUtils.rxSchedulerHelper())
-    //        //                .compose(RxUtils.handleResult())
-    //        //                .filter(feedArticleListResponse -> mView != null)
-    //        //                .subscribeWith(new BaseObserver<FeedArticleListData>(mView,
-    //        //                        AppContext.getInstance().getString(R.string
-    //        //                                .failed_to_obtain_article_list),
-    //        //                        false) {
-    //        //                    @Override
-    //        //                    public void onNext(FeedArticleListData feedArticleListData) {
-    //        //                        if (feedArticleListData.datas.size() > 0) {
-    //        //                            mView.showArticleList(feedArticleListData, isRefresh);
-    //        //                        } else {
-    //        //                            mView.showNoMoreData();
-    //        //                        }
-    //        //                    }
-    //        //                }));
-    //
-    //
-    //        addSubscribe(mDataManager.getFeedArticleList(mCurrentPage)
-    //                .compose(RxUtils.rxSchedulerHelper())
-    //                .compose(RxUtils.handleResult())
-    //                .filter(feedArticleListResponse -> mView != null)
-    //                .subscribe(feedArticleListData -> {
-    //                    if (feedArticleListData.datas.size() > 0) {
-    //                        mView.showArticleList(feedArticleListData, isRefresh);
-    //                    } else {
-    //                        mView.showNoMoreData();
-    //                    }
-    //                }, throwable -> mView.showLoadMoreError()));
-    //
-    //    }
+
 
     @Override
     public void addCollectArticle(int position, FeedArticleData feedArticleData) {
@@ -200,21 +166,6 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
     }
 
 
-    //    @Override
-    //    public void autoRefresh(boolean isShowError) {
-    //        isRefresh = true;
-    //        mCurrentPage = 0;
-    //        getBannerData(isShowError);
-    //        getFeedArticleList(isShowError);
-    //    }
-    //
-    //    @Override
-    //    public void loadMore() {
-    //        isRefresh = false;
-    //        mCurrentPage++;
-    //        loadMoreData();
-    //    }
-
     @Override
     public void getBannerData(boolean isShowError) {
 
@@ -232,18 +183,21 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
     }
 
     @Override
-    public void getFeedArticleList(boolean isShowError) {
+    public void getFeedArticleList(int pager,boolean isShowError) {
 
-        addSubscribe(mDataManager.getFeedArticleList(mCurrentPage)
+        addSubscribe(mDataManager.getFeedArticleList(pager)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
                 .filter(feedArticleListData -> mView != null)
                 .subscribeWith(new BaseObserver<FeedArticleListData>(mView,
-                        AppContext.getInstance().getString(R.string.failed_to_obtain_article_list),
-                        isShowError) {
+                        AppContext.getInstance().getString(R.string.failed_to_obtain_article_list), isShowError) {
                     @Override
-                    public void onNext(FeedArticleListData feedArticleListData) {
-                        mView.showArticleList(feedArticleListData);
+                    public void onNext(FeedArticleListData data) {
+                        if (data.datas.size() > 0) {
+                            mView.showArticleList(data);
+                        } else {
+                            mView.showNoMoreData();
+                        }
                     }
                 }));
     }

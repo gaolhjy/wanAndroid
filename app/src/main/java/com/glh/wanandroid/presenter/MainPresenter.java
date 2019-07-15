@@ -25,13 +25,13 @@ import com.glh.wanandroid.utils.RxUtils;
 
 public class MainPresenter extends BasePresenter<MainContract.View> implements MainContract.Presenter {
 
-    DataManager       mDataManager;
-    MainContract.View mView;
+
+    private MainContract.View mView;
 
     public MainPresenter(DataManager dataManager, MainContract.View mView) {
         super(dataManager);
         this.mDataManager = dataManager;
-        this.mView=mView;
+        this.mView = mView;
     }
 
     @Override

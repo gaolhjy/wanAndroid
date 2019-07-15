@@ -26,12 +26,12 @@ import com.glh.wanandroid.utils.RxUtils;
 
 public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter {
 
-    DataManager        dataManager;
-    LoginContract.View mView;
+
+    private LoginContract.View mView;
 
     public LoginPresenter(DataManager dataManager, LoginContract.View view) {
         super(dataManager);
-        this.dataManager = dataManager;
+        this.mDataManager = dataManager;
         this.mView = view;
     }
 
@@ -45,7 +45,7 @@ public class LoginPresenter extends BasePresenter<LoginContract.View> implements
 
         mView.showLoading();
 
-        addSubscribe(dataManager.login(username, password)
+        addSubscribe(mDataManager.login(username, password)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
                 .subscribeWith(new BaseObserver<LoginData>(mView,

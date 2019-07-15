@@ -224,12 +224,12 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
 
     @Override
     public void showLoginView() {
-        mPresenter.getFeedArticleList(false);
+        mPresenter.getFeedArticleList(currentPage, false);
     }
 
     @Override
     public void showLogoutView() {
-        mPresenter.getFeedArticleList(false);
+        mPresenter.getFeedArticleList(currentPage, false);
     }
 
 
@@ -245,7 +245,7 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
             return;
         }
         if (isRefresh) {
-            mAdapter.replaceData(datas.datas);
+            mAdapter.setNewData(datas.datas);
         } else {
             mAdapter.addData(datas.datas);
         }
@@ -266,7 +266,7 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
 
     @Override
     protected void getData(int currentPage, boolean isShow, String id) {
-        mPresenter.getFeedArticleList(false);
+        mPresenter.getFeedArticleList(currentPage, false);
         mPresenter.getBannerData(false);
     }
 

@@ -27,7 +27,7 @@ import com.glh.wanandroid.utils.RxUtils;
 public class ProjectListPresenter extends BasePresenter<IBaseListView2>
         implements IBaseListContract.Presenter {
 
-    private DataManager    mDataManager;
+
     private IBaseListView2 mView;
 
 

@@ -26,7 +26,7 @@ import java.util.List;
 public class KnowlePresenter extends BasePresenter<IBaseListView2>
         implements IBaseListContract.Presenter {
 
-    private DataManager    mDataManager;
+
     private IBaseListView2 mView;
 
 

@@ -16,7 +16,7 @@ import com.glh.wanandroid.core.DataManager;
 public class BasePresenter<T extends AbstractView> extends BaseSimplePresenter<T> {
 
     protected T           mView;
-    private   DataManager mDataManager;
+    protected DataManager mDataManager;
 
     public BasePresenter(DataManager dataManager) {
         this.mDataManager = dataManager;
