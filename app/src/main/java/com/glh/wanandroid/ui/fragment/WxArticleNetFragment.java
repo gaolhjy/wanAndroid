@@ -3,7 +3,7 @@ package com.glh.wanandroid.ui.fragment;
 import android.os.Bundle;
 
 import com.doyo.sdk.adapter.BaseCompatAdapter;
-import com.doyo.sdk.fragment.BaseListFragment3;
+import com.doyo.sdk.fragment.BaseListFragmentEx;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.constant.Constants;
@@ -26,7 +26,7 @@ import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
  *
  * </pre>
  */
-public class WxArticleNetFragment extends BaseListFragment3<WxArticlePresenter,ArticleListAdapter> {
+public class WxArticleNetFragment extends BaseListFragmentEx<WxArticlePresenter,ArticleListAdapter> {
 
     public static WxArticleNetFragment getInstance(String param1, String param2) {
         WxArticleNetFragment fragment = new WxArticleNetFragment();

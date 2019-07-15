@@ -1,7 +1,7 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.IBaseListView;
+import com.doyo.sdk.mvp.IBaseListView2;
 import com.glh.wanandroid.bean.ToDoListData;
 
 /**
@@ -18,7 +18,7 @@ import com.glh.wanandroid.bean.ToDoListData;
 public interface ToDoContract {
 
 
-    interface View extends IBaseListView {
+    interface View extends IBaseListView2<ToDoListData> {
 
         /**
          * Show content

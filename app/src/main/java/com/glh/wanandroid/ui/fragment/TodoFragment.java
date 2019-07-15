@@ -1,12 +1,11 @@
 package com.glh.wanandroid.ui.fragment;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.doyo.sdk.adapter.BaseCompatAdapter;
 import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.utils.JumpUtils;
@@ -45,8 +44,8 @@ import butterknife.BindView;
  *
  * </pre>
  */
-public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToDoContract.View,
-        BaseQuickAdapter.RequestLoadMoreListener, HeaderBar.OnCustonClickListener {
+public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToDoListData> implements ToDoContract.View,
+        HeaderBar.OnCustonClickListener {
 
     @BindView(R.id.header)
     HeaderBar          mHeaderBar;
@@ -58,8 +57,7 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToD
     private boolean      isDone;
     private ToDoListData mTodoListBean;
     private ToDoAdapter  mAdapter;
-    private int          currentPage = 1;
-    private boolean      isRefresh   = true;
+
 
     public static TodoFragment newInstance(boolean isDone) {
         Bundle args = new Bundle();
@@ -75,7 +73,7 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToD
     }
 
     @Override
-    protected void reload() {
+    public void reload() {
         currentPage = 1;
         isRefresh = true;
         if (isDone) {   //完成事项
@@ -126,6 +124,15 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToD
         }
     }
 
+    @Override
+    protected void getInitData() {
+
+        Bundle bundle = getArguments();
+        if (bundle != null) {
+            isDone = bundle.getBoolean(Constants.ARG_PARAM1);
+        }
+    }
+
     private void setRefresh() {
 
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
@@ -141,26 +148,14 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToD
         });
     }
 
+
+
     @Override
-    protected void initViews() {
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            isDone = bundle.getBoolean(Constants.ARG_PARAM1);
-        }
-
-        initRecyclerView();
-    }
-
-    private void initRecyclerView() {
+    protected BaseCompatAdapter getAbstractAdapter() {
 
         mTodoListBean = new ToDoListData();
         mAdapter = new ToDoAdapter(R.layout.todo_item_view, R.layout.todo_item_head,
                 null, isDone);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(_mActivity));
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setAdapter(mAdapter);
-        mAdapter.setOnLoadMoreListener(this, mRecyclerView);
-
         mAdapter.setOnItemChildClickListener((adapter, view, position) -> {
             TodoSection bean = (TodoSection) adapter.getData().get(position);
             if (!bean.isHeader) {
@@ -168,7 +163,10 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToD
                 itemDo(view, desData, position);
             }
         });
+        return mAdapter;
     }
+
+
 
     private void itemDo(View view, TodoDesData desData, int position) {
         int id = desData.id;
@@ -203,20 +201,6 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToD
         return todoSections;
     }
 
-
-    @Override
-    public void showLoadMoreError() {
-
-    }
-
-    @Override
-    public void showNoMoreData() {
-        if (isRefresh) {
-            showEmpty();
-        } else {
-            mAdapter.loadMoreEnd();
-        }
-    }
 
     @Override
     public void showData(ToDoListData data) {
@@ -285,6 +269,10 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter> implements ToD
             mHeaderBar.setRightBtnSrc(R.drawable.icon_right_write);
             mHeaderBar.setOnRightBtnClickListener(this);
         }
+    }
+
+    @Override
+    protected void getData(int currentPage, boolean isShow, String id) {
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.glh.wanandroid.ui.fragment;
 import android.os.Bundle;
 
 import com.doyo.sdk.adapter.BaseCompatAdapter;
-import com.doyo.sdk.fragment.BaseListFragment3;
+import com.doyo.sdk.fragment.BaseListFragmentEx;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.constant.Constants;
@@ -26,7 +26,7 @@ import com.glh.wanandroid.ui.adapter.ProjectListAdapter;
  *
  * </pre>
  */
-public class ProjectNetFragment extends BaseListFragment3<ProjectListPresenter,
+public class ProjectNetFragment extends BaseListFragmentEx<ProjectListPresenter,
         ProjectListAdapter> {
 
     public static ProjectNetFragment getInstance(String params1, String params2) {

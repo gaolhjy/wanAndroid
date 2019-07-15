@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.doyo.sdk.adapter.BaseCompatAdapter;
-import com.doyo.sdk.fragment.BaseListFragment2;
+import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.mvp.IBaseListView2;
 import com.doyo.sdk.utils.JumpUtils;
@@ -34,8 +34,8 @@ import java.util.List;
  * </pre>
  */
 
-public class KnowleFragment extends BaseListFragment2<KnowlePresenter,
-        KnowledgeHierarchyListAdapter> implements IBaseListView2<List<KnowleData>> {
+public class KnowleFragment extends BaseListFragment<KnowlePresenter,
+        KnowledgeHierarchyListAdapter,List<KnowleData>> implements IBaseListView2<List<KnowleData>> {
 
     public static KnowleFragment getInstance(String param1, String param2) {
         KnowleFragment fragment = new KnowleFragment();

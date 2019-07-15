@@ -4,7 +4,6 @@ import android.view.View;
 
 import com.doyo.sdk.adapter.BaseCompatAdapter;
 import com.doyo.sdk.mvp.BaseSimplePresenter;
-import com.doyo.sdk.mvp.IBaseListView2;
 import com.doyo.sdk.mvp.ResBaseListBean;
 
 
@@ -19,9 +18,8 @@ import com.doyo.sdk.mvp.ResBaseListBean;
  * </pre>
  */
 
-public abstract class BaseListFragment3<P extends BaseSimplePresenter,
-        A extends BaseCompatAdapter> extends BaseListFragment2<P, A> implements
-        IBaseListView2<ResBaseListBean> {
+public abstract class BaseListFragmentEx<P extends BaseSimplePresenter,
+        A extends BaseCompatAdapter> extends BaseListFragment<P, A, ResBaseListBean> {
 
     @Override
     public void showData(ResBaseListBean datas) {

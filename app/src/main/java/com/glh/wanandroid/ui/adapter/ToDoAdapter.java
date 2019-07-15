@@ -2,8 +2,8 @@ package com.glh.wanandroid.ui.adapter;
 
 import android.text.TextUtils;
 
-import com.chad.library.adapter.base.BaseSectionQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
+import com.doyo.sdk.adapter.BaseCompatSectionQuickAdapter;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.TodoSection;
 
@@ -19,7 +19,7 @@ import java.util.List;
  *
  * </pre>
  */
-public class ToDoAdapter extends BaseSectionQuickAdapter<TodoSection, BaseViewHolder> {
+public class ToDoAdapter extends BaseCompatSectionQuickAdapter<TodoSection, BaseViewHolder> {
 
     private boolean isDone;
 
