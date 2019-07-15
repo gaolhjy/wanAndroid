@@ -29,7 +29,6 @@ import com.glh.wanandroid.ui.adapter.ProjectListAdapter;
 public class ProjectNetFragment extends BaseListFragment3<ProjectListPresenter,
         ProjectListAdapter> {
 
-
     public static ProjectNetFragment getInstance(String params1, String params2) {
 
         ProjectNetFragment fragment = new ProjectNetFragment();

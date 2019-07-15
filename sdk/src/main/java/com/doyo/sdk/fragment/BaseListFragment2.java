@@ -18,7 +18,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
  *     e-mail : 984992087@qq.com
  *     company: 永无bug集团
  *     time   : 2019/05/20
- *     desc   :
+ *     desc   : 列表类fragment的基类
  *
  * </pre>
  */

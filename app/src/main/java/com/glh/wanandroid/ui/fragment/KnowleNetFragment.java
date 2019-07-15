@@ -27,8 +27,7 @@ import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
  * </pre>
  */
 
-public class KnowleNetFragment extends BaseListFragment3<KnowleDetailPresenter,
-        ArticleListAdapter> {
+public class KnowleNetFragment extends BaseListFragment3<KnowleDetailPresenter, ArticleListAdapter> {
 
     public static KnowleNetFragment getInstance(String id, String param2) {
         KnowleNetFragment fragment = new KnowleNetFragment();

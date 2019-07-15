@@ -7,6 +7,7 @@ import com.doyo.sdk.adapter.BaseCompatAdapter;
 import com.doyo.sdk.fragment.BaseListFragment2;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.utils.JumpUtils;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.KnowleData;
 import com.glh.wanandroid.constant.Constants;
@@ -17,6 +18,7 @@ import com.glh.wanandroid.core.http.HttpHelperImpl;
 import com.glh.wanandroid.core.prefs.PreferenceHelper;
 import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.KnowlePresenter;
+import com.glh.wanandroid.ui.activity.KnowleDetailActivity;
 import com.glh.wanandroid.ui.adapter.KnowledgeHierarchyListAdapter;
 
 import java.util.List;
@@ -47,6 +49,7 @@ public class KnowleFragment extends BaseListFragment2<KnowlePresenter,
 
     @Override
     protected BaseCompatAdapter getAbstractAdapter() {
+        isHavaMore = false;
         mAdapter = new KnowledgeHierarchyListAdapter(R.layout.item_knowledge_hierarchy, null);
         mAdapter.setOnItemClickListener((adapter, view, position) -> startDetailPager(view,
                 position));
@@ -56,7 +59,6 @@ public class KnowleFragment extends BaseListFragment2<KnowlePresenter,
 
     @Override
     protected void getInitData() {
-        isHavaMore = false;
     }
 
 
@@ -65,8 +67,8 @@ public class KnowleFragment extends BaseListFragment2<KnowlePresenter,
             return;
         }
 
-        //        KnowleData data = mAdapter.getData().get(position);
-        //        JumpUtils.JumpToActivity(_mActivity, KnowleDetailActivity.class, data);
+        KnowleData data = mAdapter.getData().get(position);
+        JumpUtils.JumpToActivity(_mActivity, KnowleDetailActivity.class, data);
 
     }
 
@@ -83,12 +85,6 @@ public class KnowleFragment extends BaseListFragment2<KnowlePresenter,
 
     @Override
     protected void getData(int currentPage, boolean isShow, String id) {
-
-        //        //TODO  因为加载更多,加载是会一直添加数据. 需要重新疯转base类.暂时这样处理
-        //        if (currentPage > 1) {
-        //            mAdapter.loadMoreEnd();
-        //            return;
-        //        }
         mPresenter.getData(currentPage, id, isShow);
     }
 

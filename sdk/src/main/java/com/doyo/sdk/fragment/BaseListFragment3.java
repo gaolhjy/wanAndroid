@@ -20,7 +20,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
  *     e-mail : 984992087@qq.com
  *     company: 永无bug集团
  *     time   : 2019/05/20
- *     desc   :
+ *     desc   : 后台数据如果遵循 data  datas  就可以直接用这个
  *
  * </pre>
  */
