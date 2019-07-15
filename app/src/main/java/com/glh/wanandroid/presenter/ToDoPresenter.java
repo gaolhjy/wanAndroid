@@ -37,49 +37,6 @@ public class ToDoPresenter extends BasePresenter<ToDoContract.View>
     @Override
     public void getTodoData(int pager, int type, boolean isShowError) {
 
-        //        Observable<ResBaseBean<ToDoListData>> todoNodoData1 = mDataManager
-        //        .getTodoNodoData(1,
-        //                pager);
-        //        Observable<ResBaseBean<ToDoListData>> todoNodoData2 = mDataManager
-        //        .getTodoNodoData(2,
-        //                pager);
-        //        Observable<ResBaseBean<ToDoListData>> todoNodoData3 = mDataManager
-        //        .getTodoNodoData(3,
-        //                pager);
-        //
-        //
-        //        addSubscribe(Observable.zip(todoNodoData1, todoNodoData2,
-        //                new BiFunction<ResBaseBean<ToDoListData>, ResBaseBean<ToDoListData>,
-        //                        List<TodoDesData>>() {
-        //
-        //                    @Override
-        //                    public List<TodoDesData> apply(ResBaseBean<ToDoListData>
-        //                    toDoListDataResBaseBean,
-        //                                              ResBaseBean<ToDoListData>
-        //                                              toDoListDataResBaseBean2) throws Exception {
-        //                        List<TodoDesData> data = new ArrayList<>();
-        //                        List<TodoDesData> datas = toDoListDataResBaseBean.getData().datas;
-        //                        data.addAll(datas);
-        //                        return data;
-        //                    }
-        //                })
-        //                .compose(RxUtils.rxSchedulerHelper())
-        //                .compose(RxUtils.handleResult())
-        //                .subscribeWith(new BaseObserver<ToDoListData>(mView,
-        //                        AppContext.getInstance().getString(R.string
-        //                        .failed_to_obtain_wx_data),
-        //                        isShowError) {
-        //                    @Override
-        //                    public void onNext(ToDoListData todoBean) {
-        //                        if (todoBean.datas.size() > 0) {
-        //                            mView.showData(todoBean);
-        //                        } else {
-        //                            mView.showNoMoreData();
-        //                        }
-        //                    }
-        //                }));
-
-
         addSubscribe(mDataManager.getTodoNodoData(type, pager)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
