@@ -26,8 +26,8 @@ public class ProjectPresenter extends BasePresenter<ProjectContract.View>
         implements ProjectContract.Presenter {
 
     private DataManager          mDataManager;
-    private ProjectContract.View view;
-    private boolean              isRefresh = true;
+    private ProjectContract.View mView;
+
 
     public ProjectPresenter(DataManager dataManager, ProjectContract.View view) {
         super(dataManager);

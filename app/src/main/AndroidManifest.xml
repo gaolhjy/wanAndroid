@@ -23,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.activity.LoginActivity"/>
-        <activity android:name=".ui.activity.MyCollectNetActivity"/>
+        <activity android:name=".ui.activity.MyCollectActivity"/>
         <activity android:name=".ui.activity.KnowleDetailActivity"/>
         <activity android:name=".ui.activity.ArticleDetailActivity"/>
         <activity android:name=".ui.activity.MyTodoActivity"/>

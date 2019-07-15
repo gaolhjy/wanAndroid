@@ -26,7 +26,7 @@ import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.MainPresenter;
 import com.glh.wanandroid.presenter.contract.MainContract;
 import com.glh.wanandroid.ui.activity.LoginActivity;
-import com.glh.wanandroid.ui.activity.MyCollectNetActivity;
+import com.glh.wanandroid.ui.activity.MyCollectActivity;
 import com.glh.wanandroid.ui.activity.MyTodoActivity;
 import com.glh.wanandroid.ui.fragment.KnowleFragment;
 import com.glh.wanandroid.ui.fragment.HomeFragment;
@@ -122,7 +122,7 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
 
     private void goMyCollect() {
         if (mPresenter.getLoginStatus()) {
-            JumpUtils.JumpToActivity(context, MyCollectNetActivity.class);
+            JumpUtils.JumpToActivity(context, MyCollectActivity.class);
         } else {
             JumpUtils.JumpToActivity(context, LoginActivity.class);
         }

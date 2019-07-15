@@ -1,7 +1,8 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.IBaseNetView;
+import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.mvp.ResBaseListBean;
 import com.glh.wanandroid.bean.FeedArticleData;
 import com.glh.wanandroid.bean.FeedArticleListData;
 
@@ -13,15 +14,7 @@ import com.glh.wanandroid.bean.FeedArticleListData;
 
 public interface MyCollectContract {
 
-    interface View extends IBaseNetView {
-
-        /**
-         * Show content
-         *
-         * @param feedArticleListData FeedArticleListData
-         */
-        void showArticleList(FeedArticleListData feedArticleListData);
-
+    interface View extends IBaseListView2<ResBaseListBean> {
 
         /**
          * Show cancel collect article data
@@ -34,12 +27,6 @@ public interface MyCollectContract {
                                           FeedArticleListData feedArticleListData);
 
 
-        /**
-         * Show Refresh event
-         */
-        void showRefreshEvent();
-
-
     }
 
     interface Presenter extends AbstractPresenter<View> {
@@ -50,7 +37,7 @@ public interface MyCollectContract {
          *
          * @param isShowError If show error
          */
-        void getFeedArticleList(int page, boolean isShowError);
+        void getData(int page, boolean isShowError);
 
 
         /**

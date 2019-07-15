@@ -66,7 +66,7 @@ public class HttpHelperImpl implements HttpHelper {
     }
 
     @Override
-    public Observable<ResBaseBean<FeedArticleListData>> getMyCollectList(int pageNum) {
+    public Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getMyCollectList(int pageNum) {
         return mGeeksApis.getMyCollectList(pageNum);
     }
 

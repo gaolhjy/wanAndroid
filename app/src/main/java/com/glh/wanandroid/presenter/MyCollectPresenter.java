@@ -1,5 +1,6 @@
 package com.glh.wanandroid.presenter;
 
+import com.doyo.sdk.mvp.ResBaseListBean;
 import com.doyo.sdk.rx.BaseObserver;
 import com.glh.wanandroid.BasePresenter;
 import com.glh.wanandroid.R;
@@ -23,9 +24,9 @@ import com.glh.wanandroid.utils.RxUtils;
 
 public class MyCollectPresenter extends BasePresenter<MyCollectContract.View> implements MyCollectContract.Presenter {
 
-    DataManager            mDataManager;
-    MyCollectContract.View mView;
-    private boolean isRefresh = true;
+    protected DataManager            mDataManager;
+    protected MyCollectContract.View mView;
+
 
     public MyCollectPresenter(DataManager dataManager, MyCollectContract.View view) {
         super(dataManager);
@@ -35,18 +36,23 @@ public class MyCollectPresenter extends BasePresenter<MyCollectContract.View> im
 
 
     @Override
-    public void getFeedArticleList(int page, boolean isShowError) {
+    public void getData(int pager, boolean isShowError) {
 
-        addSubscribe(mDataManager.getMyCollectList(page)
+        addSubscribe(mDataManager.getMyCollectList(pager)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
                 .filter(feedArticleListResponse -> mView != null)
-                .subscribeWith(new BaseObserver<FeedArticleListData>(mView,
+                .subscribeWith(new BaseObserver<ResBaseListBean<FeedArticleData>>(mView,
                         AppContext.getInstance().getString(R.string.failed_to_obtain_article_list),
                         isShowError) {
+
                     @Override
-                    public void onNext(FeedArticleListData feedArticleListData) {
-                        mView.showArticleList(feedArticleListData);
+                    public void onNext(ResBaseListBean<FeedArticleData> data) {
+                        if (data.datas.size() > 0) {
+                            mView.showData(data);
+                        } else {
+                            mView.showNoMoreData();
+                        }
                     }
                 }));
     }
@@ -62,11 +68,12 @@ public class MyCollectPresenter extends BasePresenter<MyCollectContract.View> im
                         AppContext.getInstance().getString(R.string.cancel_collect_fail)) {
                     @Override
                     public void onNext(FeedArticleListData feedArticleListData) {
-                        feedArticleData.collect=false;
+                        feedArticleData.collect = false;
                         mView.showCancelCollectArticleData(position, feedArticleData,
                                 feedArticleListData);
                     }
                 }));
     }
+
 
 }

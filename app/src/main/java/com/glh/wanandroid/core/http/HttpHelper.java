@@ -86,7 +86,7 @@ public interface HttpHelper {
      * 方法：GET
      * 参数： 页码：拼接在链接中，从0开始。
      */
-    Observable<ResBaseBean<FeedArticleListData>> getMyCollectList(int pageNum);
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getMyCollectList(int pageNum);
 
 
     /**

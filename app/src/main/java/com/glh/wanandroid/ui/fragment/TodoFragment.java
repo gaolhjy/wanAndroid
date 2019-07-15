@@ -148,7 +148,6 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToD
     }
 
 
-
     @Override
     protected BaseCompatAdapter getAbstractAdapter() {
 

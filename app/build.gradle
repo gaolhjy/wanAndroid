@@ -38,6 +38,9 @@ dependencies {
     implementation 'com.android.support:support-v13:28.0.0'
 
 
+    debugImplementation 'com.simple:spiderman:1.1.0'
+    releaseImplementation 'com.simple:spiderman-no-op:1.1.0'
+
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation(name: 'ToastUtil', ext: 'aar')
     implementation project(':sdk')

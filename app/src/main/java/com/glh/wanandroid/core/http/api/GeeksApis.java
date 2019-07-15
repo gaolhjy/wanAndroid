@@ -98,7 +98,7 @@ public interface GeeksApis {
      * 参数： 页码：拼接在链接中，从0开始。
      */
     @GET("/lg/collect/list/{pageNum}/json")
-    Observable<ResBaseBean<FeedArticleListData>> getMyCollectList(@Path("pageNum") int pageNum);
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getMyCollectList(@Path("pageNum") int pageNum);
 
 
     /**

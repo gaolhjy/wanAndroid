@@ -10,6 +10,7 @@ import com.scwang.smartrefresh.layout.api.DefaultRefreshHeaderCreator;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.header.ClassicsHeader;
+import com.simple.spiderman.SpiderMan;
 
 /**
  * <pre>
@@ -26,6 +27,7 @@ public class AppContext extends GlobalApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        SpiderMan.init(this);
         ToastUtils.init(this);
     }
 

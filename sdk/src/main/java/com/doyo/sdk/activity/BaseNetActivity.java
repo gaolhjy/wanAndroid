@@ -50,7 +50,8 @@ public abstract class BaseNetActivity<T extends BaseSimplePresenter> extends Bas
             throw new IllegalStateException(
                     "mNormalView's ParentView should be a ViewGroup.");
         }
-        ViewGroup parent = (ViewGroup) mNormalView.getParent();
+
+        parent = (ViewGroup) mNormalView.getParent();
         View.inflate(context, R.layout.loading_view, parent);
         View.inflate(context, R.layout.error_view, parent);
         mLoadingView = parent.findViewById(R.id.loading_group);

@@ -160,7 +160,7 @@ public class DataManager implements PreferenceHelper, HttpHelper {
     }
 
     @Override
-    public Observable<ResBaseBean<FeedArticleListData>> getMyCollectList(int pageNum) {
+    public Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getMyCollectList(int pageNum) {
         return mHttpHelper.getMyCollectList(pageNum);
     }
 

@@ -26,7 +26,7 @@ public class NavigationPresenter extends BasePresenter<NavigationContract.View> 
 
     DataManager             mDataManager;
     NavigationContract.View mView;
-    private boolean isRefresh = true;
+
 
     public NavigationPresenter(DataManager dataManager, NavigationContract.View view) {
         super(dataManager);

@@ -26,7 +26,7 @@ public class WxPresenter extends BasePresenter<WxContract.View>
         implements WxContract.Presenter {
 
     private DataManager     mDataManager;
-    private WxContract.View view;
+    private WxContract.View mView;
 
 
     public WxPresenter(DataManager dataManager, WxContract.View view) {
