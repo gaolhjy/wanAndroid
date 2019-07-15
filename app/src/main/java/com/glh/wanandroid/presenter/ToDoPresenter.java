@@ -25,7 +25,7 @@ public class ToDoPresenter extends BasePresenter<ToDoContract.View>
         implements ToDoContract.Presenter {
 
     private DataManager            mDataManager;
-    private ToDoContract.View view;
+    private ToDoContract.View mView;
 
     public ToDoPresenter(DataManager dataManager, ToDoContract.View view) {
         super(dataManager);

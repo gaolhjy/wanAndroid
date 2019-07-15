@@ -126,7 +126,6 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToD
 
     @Override
     protected void getInitData() {
-
         Bundle bundle = getArguments();
         if (bundle != null) {
             isDone = bundle.getBoolean(Constants.ARG_PARAM1);
