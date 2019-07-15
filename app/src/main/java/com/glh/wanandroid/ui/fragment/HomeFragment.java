@@ -245,10 +245,8 @@ public class HomeFragment extends BaseListFragment3<HomePresenter, ArticleListAd
             return;
         }
         if (isRefresh) {
-            //            mFeedArticleDataList = feedArticleListData.datas;
             mAdapter.replaceData(datas.datas);
         } else {
-            //            mFeedArticleDataList.addAll(feedArticleListData.datas);
             mAdapter.addData(datas.datas);
         }
 
