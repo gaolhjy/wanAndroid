@@ -47,6 +47,7 @@ public class MyCollectActivity extends BaseListActivityEx<MyCollectPresenter, Ar
 
     @Override
     protected void getInitData() {
+        firstPager = 0;
         mHeaderBar.setTitle("我的收藏");
     }
 

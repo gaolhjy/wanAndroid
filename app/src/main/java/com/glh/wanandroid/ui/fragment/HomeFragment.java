@@ -121,7 +121,7 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
 
     @Override
     protected void getInitData() {
-
+        firstPager = 0;
     }
 
 

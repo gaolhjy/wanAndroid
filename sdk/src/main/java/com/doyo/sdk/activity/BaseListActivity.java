@@ -43,6 +43,12 @@ public abstract class BaseListActivity<P extends BaseSimplePresenter,
      */
     protected boolean isHavaMore = true;
 
+    /**
+     * 分页,有的是从0开始,有的又是从1开始的.
+     * 默认从1开始
+     */
+    protected int firstPager = 1;
+
     @Override
     protected int getLayoutId() {
         return R.layout.base_activity_recyclerview;
@@ -63,7 +69,7 @@ public abstract class BaseListActivity<P extends BaseSimplePresenter,
         getInitData();
         setRefresh();
 
-        currentPage = 1;
+        currentPage = firstPager;
         getData(currentPage, true, id);
 
         if (NetUtils.isNetworkConnected()) {
@@ -94,7 +100,7 @@ public abstract class BaseListActivity<P extends BaseSimplePresenter,
     protected void setRefresh() {
 
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            currentPage = 1;
+            currentPage = firstPager;
             isRefresh = true;
             getData(currentPage, false, id);
             refreshLayout.finishRefresh(1000);
@@ -103,7 +109,7 @@ public abstract class BaseListActivity<P extends BaseSimplePresenter,
 
     @Override
     protected void reload() {
-        currentPage = 1;
+        currentPage = firstPager;
         isRefresh = true;
         getData(currentPage, false, id);
     }
