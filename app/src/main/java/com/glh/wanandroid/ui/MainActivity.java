@@ -28,6 +28,7 @@ import com.glh.wanandroid.presenter.contract.MainContract;
 import com.glh.wanandroid.ui.activity.LoginActivity;
 import com.glh.wanandroid.ui.activity.MyCollectActivity;
 import com.glh.wanandroid.ui.activity.MyTodoActivity;
+import com.glh.wanandroid.ui.activity.SettingActivity;
 import com.glh.wanandroid.ui.fragment.HomeFragment;
 import com.glh.wanandroid.ui.fragment.KnowleFragment;
 import com.glh.wanandroid.ui.fragment.NavigationFragment;
@@ -108,6 +109,12 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
         mNavigationView.getMenu().findItem(R.id.nav_item_todo)
                 .setOnMenuItemClickListener(item -> {
                     goMyTodo();
+                    return true;
+                });
+
+        mNavigationView.getMenu().findItem(R.id.nav_item_setting)
+                .setOnMenuItemClickListener(item -> {
+                    JumpUtils.JumpToActivity(_mActivity, SettingActivity.class);
                     return true;
                 });
     }

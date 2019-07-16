@@ -28,6 +28,7 @@
         <activity android:name=".ui.activity.ArticleDetailActivity"/>
         <activity android:name=".ui.activity.MyTodoActivity"/>
         <activity android:name=".ui.activity.AddTodoActivity"/>
+        <activity android:name=".ui.activity.SettingActivity"/>
     </application>
 
 </manifest>
