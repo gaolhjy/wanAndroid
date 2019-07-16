@@ -61,22 +61,22 @@ public class PreferenceHelperImpl implements PreferenceHelper {
     }
 
     @Override
-    public void setCurrentPage(int position) {
+    public void setcurPage(int position) {
         mPreferences.edit().putInt(Constants.CURRENT_PAGE, position).apply();
     }
 
     @Override
-    public int getCurrentPage() {
+    public int getcurPage() {
         return mPreferences.getInt(Constants.CURRENT_PAGE, 0);
     }
 
     @Override
-    public void setProjectCurrentPage(int position) {
+    public void setProjectcurPage(int position) {
         mPreferences.edit().putInt(Constants.PROJECT_CURRENT_PAGE, position).apply();
     }
 
     @Override
-    public int getProjectCurrentPage() {
+    public int getProjectcurPage() {
         return mPreferences.getInt(Constants.PROJECT_CURRENT_PAGE, 0);
     }
 

@@ -81,6 +81,6 @@ public interface AbstractPresenter<T extends AbstractView> {
      *
      * @return current page
      */
-    int getCurrentPage();
+    int getcurPage();
 
 }

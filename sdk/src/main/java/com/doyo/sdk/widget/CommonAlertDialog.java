@@ -59,7 +59,7 @@ public class CommonAlertDialog {
         Window window = alertDialog.getWindow();
         if (window != null) {
             window.setContentView(R.layout.common_alert_dialog);
-            TextView contentTv = (TextView) window.findViewById(R.id.dialog_content);
+            TextView contentTv = window.findViewById(R.id.dialog_content);
             contentTv.setText(content);
             Button mOkBtn = (Button) window.findViewById(R.id.dialog_btn);
             mOkBtn.setText(btnContent);

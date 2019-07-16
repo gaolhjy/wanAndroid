@@ -99,7 +99,7 @@ public class MyCollectActivity extends BaseListActivityEx<MyCollectPresenter, Ar
 
 
     @Override
-    protected void getData(int currentPage, boolean isShow, String id) {
-        mPresenter.getData(currentPage, isShow);
+    protected void getData(int curPage, boolean isShow, String id) {
+        mPresenter.getData(curPage, isShow);
     }
 }

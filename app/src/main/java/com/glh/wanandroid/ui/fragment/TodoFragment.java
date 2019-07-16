@@ -74,12 +74,12 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToD
 
     @Override
     public void reload() {
-        currentPage = 1;
+        curPage = 1;
         isRefresh = true;
         if (isDone) {   //完成事项
-            mPresenter.getCompleData(currentPage, 1, false);
+            mPresenter.getCompleData(curPage, 1, false);
         } else {
-            mPresenter.getTodoData(currentPage, 1, false);
+            mPresenter.getTodoData(curPage, 1, false);
         }
     }
 
@@ -110,11 +110,11 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToD
         mAdapter.setEnableLoadMore(false);
         setRefresh();
 
-        currentPage = 1;
+        curPage = 1;
         if (isDone) {   //完成事项
-            mPresenter.getCompleData(currentPage, 1, true);
+            mPresenter.getCompleData(curPage, 1, true);
         } else {
-            mPresenter.getTodoData(currentPage, 1, true);
+            mPresenter.getTodoData(curPage, 1, true);
             mHeaderBar.setRightBtnSrc(R.drawable.icon_right_write);
             mHeaderBar.setOnRightBtnClickListener(this);
         }
@@ -135,13 +135,13 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToD
     private void setRefresh() {
 
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            currentPage = 1;
+            curPage = 1;
             isRefresh = true;
             mAdapter.setEnableLoadMore(false);
             if (isDone) {   //完成事项
-                mPresenter.getCompleData(currentPage, 1, false);
+                mPresenter.getCompleData(curPage, 1, false);
             } else {
-                mPresenter.getTodoData(currentPage, 1, false);
+                mPresenter.getTodoData(curPage, 1, false);
             }
             refreshLayout.finishRefresh(1000);
         });
@@ -206,7 +206,7 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToD
         mTodoListBean = data;
         mRecyclerView.setVisibility(View.VISIBLE);
 
-        if (currentPage < data.pageCount) {
+        if (curPage < data.pageCount) {
             mAdapter.loadMoreEnd(isRefresh);
         } else {
             mAdapter.loadMoreComplete();
@@ -258,19 +258,19 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToD
     @Override
     public void onLoadMoreRequested() {
         isRefresh = false;
-        currentPage++;
+        curPage++;
         mAdapter.setEnableLoadMore(true);
         if (isDone) {   //完成事项
-            mPresenter.getCompleData(currentPage, 1, false);
+            mPresenter.getCompleData(curPage, 1, false);
         } else {
-            mPresenter.getTodoData(currentPage, 1, false);
+            mPresenter.getTodoData(curPage, 1, false);
             mHeaderBar.setRightBtnSrc(R.drawable.icon_right_write);
             mHeaderBar.setOnRightBtnClickListener(this);
         }
     }
 
     @Override
-    protected void getData(int currentPage, boolean isShow, String id) {
+    protected void getData(int curPage, boolean isShow, String id) {
     }
 
     @Override

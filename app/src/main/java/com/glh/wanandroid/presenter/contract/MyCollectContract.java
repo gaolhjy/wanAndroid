@@ -1,7 +1,7 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.mvp.IBaseListView;
 import com.doyo.sdk.mvp.ResBaseListBean;
 import com.glh.wanandroid.bean.FeedArticleData;
 import com.glh.wanandroid.bean.FeedArticleListData;
@@ -14,7 +14,7 @@ import com.glh.wanandroid.bean.FeedArticleListData;
 
 public interface MyCollectContract {
 
-    interface View extends IBaseListView2<ResBaseListBean> {
+    interface View extends IBaseListView<ResBaseListBean> {
 
         /**
          * Show cancel collect article data

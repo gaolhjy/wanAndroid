@@ -6,7 +6,7 @@ import android.view.View;
 import com.doyo.sdk.adapter.BaseCompatAdapter;
 import com.doyo.sdk.fragment.BaseListFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.mvp.IBaseListView;
 import com.doyo.sdk.utils.JumpUtils;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.KnowleData;
@@ -35,7 +35,7 @@ import java.util.List;
  */
 
 public class KnowleFragment extends BaseListFragment<KnowlePresenter,
-        KnowledgeHierarchyListAdapter,List<KnowleData>> implements IBaseListView2<List<KnowleData>> {
+        KnowledgeHierarchyListAdapter,List<KnowleData>> implements IBaseListView<List<KnowleData>> {
 
     public static KnowleFragment getInstance(String param1, String param2) {
         KnowleFragment fragment = new KnowleFragment();
@@ -84,8 +84,8 @@ public class KnowleFragment extends BaseListFragment<KnowlePresenter,
 
 
     @Override
-    protected void getData(int currentPage, boolean isShow, String id) {
-        mPresenter.getData(currentPage, id, isShow);
+    protected void getData(int curPage, boolean isShow, String id) {
+        mPresenter.getData(curPage, id, isShow);
     }
 
     @Override

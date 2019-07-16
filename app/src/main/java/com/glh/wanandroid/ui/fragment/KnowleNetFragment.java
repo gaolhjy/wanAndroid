@@ -57,8 +57,8 @@ public class KnowleNetFragment extends BaseListFragmentEx<KnowleDetailPresenter,
 
 
     @Override
-    protected void getData(int currentPage, boolean isShow, String id) {
-        mPresenter.getData(currentPage, id, isShow);
+    protected void getData(int curPage, boolean isShow, String id) {
+        mPresenter.getData(curPage, id, isShow);
     }
 
 

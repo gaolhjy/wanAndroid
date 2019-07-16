@@ -1,7 +1,7 @@
 package com.glh.wanandroid.presenter.contract;
 
 import com.doyo.sdk.mvp.AbstractPresenter;
-import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.mvp.IBaseListView;
 import com.doyo.sdk.mvp.ResBaseListBean;
 import com.glh.wanandroid.bean.BannerData;
 import com.glh.wanandroid.bean.FeedArticleData;
@@ -17,7 +17,7 @@ import java.util.List;
 
 public interface HomeContract {
 
-    interface View extends IBaseListView2<ResBaseListBean> {
+    interface View extends IBaseListView<ResBaseListBean> {
 
         /**
          * Show auto login success
@@ -40,12 +40,9 @@ public interface HomeContract {
          */
         void showLogoutView();
 
-        /**
-         * Show content
-         *
-         * @param feedArticleListData FeedArticleListData
-         */
-        void showArticleList(FeedArticleListData feedArticleListData);
+
+
+        void showBannerData(List<BannerData> bannerDataList);
 
         /**
          * Show collect article data
@@ -66,13 +63,6 @@ public interface HomeContract {
          */
         void showCancelCollectArticleData(int position, FeedArticleData feedArticleData,
                                           FeedArticleListData feedArticleListData);
-
-        /**
-         * Show banner data
-         *
-         * @param bannerDataList List<BannerData>
-         */
-        void showBannerData(List<BannerData> bannerDataList);
 
 
         void showCollectSuccess();
@@ -98,34 +88,28 @@ public interface HomeContract {
         void loadMainPagerData();
 
         /**
-         * Get feed article list
-         *
-         * @param isShowError If show error
+         * 获取文章列表数据
          */
         void getFeedArticleList(int pager, boolean isShowError);
 
+
         /**
-         * Add collect article
-         *
-         * @param position        Position
-         * @param feedArticleData FeedArticleData
+         * 获取轮播图数据
+         */
+        void getBannerData(boolean isShowError);
+
+
+        /**
+         * 收藏文章
          */
         void addCollectArticle(int position, FeedArticleData feedArticleData);
 
+
         /**
-         * Cancel collect article
-         *
-         * @param position        Position
-         * @param feedArticleData FeedArticleData
+         * 取消收藏文章
          */
         void cancelCollectArticle(int position, FeedArticleData feedArticleData);
 
-        /**
-         * Get banner data
-         *
-         * @param isShowError If show error
-         */
-        void getBannerData(boolean isShowError);
 
     }
 

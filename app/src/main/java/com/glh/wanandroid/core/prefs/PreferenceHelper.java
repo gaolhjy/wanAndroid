@@ -70,28 +70,28 @@ public interface PreferenceHelper {
      *
      * @param position Position
      */
-    void setCurrentPage(int position);
+    void setcurPage(int position);
 
     /**
      * Get current page
      *
      * @return current page
      */
-    int getCurrentPage();
+    int getcurPage();
 
     /**
      * Set project current page
      *
      * @param position Position
      */
-    void setProjectCurrentPage(int position);
+    void setProjectcurPage(int position);
 
     /**
      * Get project current page
      *
      * @return current page
      */
-    int getProjectCurrentPage();
+    int getProjectcurPage();
 
     /**
      * Get auto cache state

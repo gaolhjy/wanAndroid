@@ -28,8 +28,8 @@ import com.glh.wanandroid.presenter.contract.MainContract;
 import com.glh.wanandroid.ui.activity.LoginActivity;
 import com.glh.wanandroid.ui.activity.MyCollectActivity;
 import com.glh.wanandroid.ui.activity.MyTodoActivity;
-import com.glh.wanandroid.ui.fragment.KnowleFragment;
 import com.glh.wanandroid.ui.fragment.HomeFragment;
+import com.glh.wanandroid.ui.fragment.KnowleFragment;
 import com.glh.wanandroid.ui.fragment.NavigationFragment;
 import com.glh.wanandroid.ui.fragment.ProjectFragment;
 import com.glh.wanandroid.ui.fragment.WxArticleFragment;
@@ -115,7 +115,7 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
     private void goMyTodo() {
         if (mPresenter.getLoginStatus()) {
             JumpUtils.JumpToActivity(context, MyTodoActivity.class);
-        }else {
+        } else {
             JumpUtils.JumpToActivity(context, LoginActivity.class);
         }
     }
@@ -161,7 +161,7 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
 
     private void loadPager(String title, int position, BaseMVPFragment mFragment, int pagerType) {
         switchFragment(position);
-        mPresenter.setCurrentPage(pagerType);
+        mPresenter.setcurPage(pagerType);
     }
 
 
@@ -210,17 +210,6 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
 
     }
 
-//    @Override
-//    public void showAutoLoginView() {
-//
-//    }
-//
-//    @Override
-//    public void showLogoutSuccess() {
-//        CommonAlertDialog.newInstance().cancelDialog(true);
-//        mNavigationView.getMenu().findItem(R.id.nav_item_logout).setVisible(false);
-//    }
-
 
     @NonNull
     @Override
@@ -255,11 +244,14 @@ public class MainActivity extends BaseMVPActivity<MainPresenter> implements Main
     }
 
     private void logout() {
-        CommonAlertDialog.newInstance().showDialog(
-                this, getString(R.string.logout_tint),
+
+        CommonAlertDialog.newInstance().showDialog(this, getString(R.string.logout_tint),
                 getString(R.string.ok),
-                getString(R.string.no),
-                v -> mPresenter.logout(),
-                v -> CommonAlertDialog.newInstance().cancelDialog(true));
+                getString(R.string.no), v -> {
+                    mPresenter.logout();
+                    CommonAlertDialog.newInstance().cancelDialog(true);
+                }, v -> CommonAlertDialog.newInstance().cancelDialog(true));
+
+
     }
 }

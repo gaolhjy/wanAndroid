@@ -13,7 +13,7 @@ package com.doyo.sdk.mvp;
 
 public interface IBaseListContract {
 
-    interface Presenter extends AbstractPresenter<IBaseListView2> {
+    interface Presenter extends AbstractPresenter<IBaseListView> {
 
 
         /**

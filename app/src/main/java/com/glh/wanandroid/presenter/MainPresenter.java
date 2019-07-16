@@ -52,7 +52,7 @@ public class MainPresenter extends BasePresenter<MainContract.View> implements M
     }
 
     @Override
-    public void setCurrentPage(int page) {
+    public void setcurPage(int page) {
 
     }
 

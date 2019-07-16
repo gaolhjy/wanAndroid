@@ -80,23 +80,23 @@ public class DataManager implements PreferenceHelper, HttpHelper {
     }
 
     @Override
-    public void setCurrentPage(int position) {
-        mPreferenceHelper.setCurrentPage(position);
+    public void setcurPage(int position) {
+        mPreferenceHelper.setcurPage(position);
     }
 
     @Override
-    public int getCurrentPage() {
-        return mPreferenceHelper.getCurrentPage();
+    public int getcurPage() {
+        return mPreferenceHelper.getcurPage();
     }
 
     @Override
-    public void setProjectCurrentPage(int position) {
-        mPreferenceHelper.setProjectCurrentPage(position);
+    public void setProjectcurPage(int position) {
+        mPreferenceHelper.setProjectcurPage(position);
     }
 
     @Override
-    public int getProjectCurrentPage() {
-        return mPreferenceHelper.getProjectCurrentPage();
+    public int getProjectcurPage() {
+        return mPreferenceHelper.getProjectcurPage();
     }
 
     @Override
@@ -135,7 +135,7 @@ public class DataManager implements PreferenceHelper, HttpHelper {
     }
 
     @Override
-    public Observable<ResBaseBean<FeedArticleListData>> getFeedArticleList(int pageNum) {
+    public Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getFeedArticleList(int pageNum) {
         return mHttpHelper.getFeedArticleList(pageNum);
     }
 

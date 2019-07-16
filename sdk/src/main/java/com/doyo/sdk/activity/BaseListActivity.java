@@ -8,7 +8,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.doyo.sdk.R;
 import com.doyo.sdk.adapter.BaseCompatAdapter;
 import com.doyo.sdk.mvp.BaseSimplePresenter;
-import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.mvp.IBaseListView;
 import com.doyo.sdk.utils.NetUtils;
 import com.doyo.sdk.widget.HeaderBar;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
@@ -27,7 +27,7 @@ import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 public abstract class BaseListActivity<P extends BaseSimplePresenter,
         A extends BaseCompatAdapter, D> extends BaseNetActivity<P> implements
-        BaseQuickAdapter.RequestLoadMoreListener, IBaseListView2<D> {
+        BaseQuickAdapter.RequestLoadMoreListener, IBaseListView<D> {
 
     protected RecyclerView       mRecyclerView;
     protected SmartRefreshLayout mRefreshLayout;
@@ -35,7 +35,7 @@ public abstract class BaseListActivity<P extends BaseSimplePresenter,
 
     protected A       mAdapter;
     protected P       mPresenter;
-    protected int     currentPage;
+    protected int     curPage;
     protected String  id;
     protected boolean isRefresh  = true;
     /**
@@ -69,8 +69,8 @@ public abstract class BaseListActivity<P extends BaseSimplePresenter,
         getInitData();
         setRefresh();
 
-        currentPage = firstPager;
-        getData(currentPage, true, id);
+        curPage = firstPager;
+        getData(curPage, true, id);
 
         if (NetUtils.isNetworkConnected()) {
             showLoading();
@@ -100,18 +100,18 @@ public abstract class BaseListActivity<P extends BaseSimplePresenter,
     protected void setRefresh() {
 
         mRefreshLayout.setOnRefreshListener(refreshLayout -> {
-            currentPage = firstPager;
+            curPage = firstPager;
             isRefresh = true;
-            getData(currentPage, false, id);
+            getData(curPage, false, id);
             refreshLayout.finishRefresh(1000);
         });
     }
 
     @Override
     protected void reload() {
-        currentPage = firstPager;
+        curPage = firstPager;
         isRefresh = true;
-        getData(currentPage, false, id);
+        getData(curPage, false, id);
     }
 
 
@@ -128,12 +128,12 @@ public abstract class BaseListActivity<P extends BaseSimplePresenter,
 
     @Override
     public void onLoadMoreRequested() {
-        currentPage++;
+        curPage++;
         isRefresh = false;
-        getData(currentPage, false, id);
+        getData(curPage, false, id);
     }
 
-    protected abstract void getData(int currentPage, boolean isShow, String id);
+    protected abstract void getData(int curPage, boolean isShow, String id);
 
     @Override
     public void showLoadMoreError() {

@@ -59,8 +59,8 @@ public class BasePresenter<T extends AbstractView> extends BaseSimplePresenter<T
     }
 
     @Override
-    public int getCurrentPage() {
-        return mDataManager.getCurrentPage();
+    public int getcurPage() {
+        return mDataManager.getcurPage();
     }
 
 

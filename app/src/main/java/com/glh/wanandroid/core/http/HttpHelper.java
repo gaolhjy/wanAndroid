@@ -39,7 +39,7 @@ public interface HttpHelper {
      *
      * @return 取消收藏页面站内文章数据
      */
-    Observable<ResBaseBean<FeedArticleListData>> getFeedArticleList(int pageNum);
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getFeedArticleList(int pageNum);
 
 
     /**

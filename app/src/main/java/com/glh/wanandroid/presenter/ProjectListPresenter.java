@@ -3,7 +3,7 @@ package com.glh.wanandroid.presenter;
 import android.util.Log;
 
 import com.doyo.sdk.mvp.IBaseListContract;
-import com.doyo.sdk.mvp.IBaseListView2;
+import com.doyo.sdk.mvp.IBaseListView;
 import com.doyo.sdk.mvp.ResBaseListBean;
 import com.doyo.sdk.rx.BaseObserver;
 import com.glh.wanandroid.BasePresenter;
@@ -24,14 +24,14 @@ import com.glh.wanandroid.utils.RxUtils;
  * </pre>
  */
 
-public class ProjectListPresenter extends BasePresenter<IBaseListView2>
+public class ProjectListPresenter extends BasePresenter<IBaseListView>
         implements IBaseListContract.Presenter {
 
 
-    private IBaseListView2 mView;
+    private IBaseListView mView;
 
 
-    public ProjectListPresenter(DataManager dataManager, IBaseListView2 view) {
+    public ProjectListPresenter(DataManager dataManager, IBaseListView view) {
         super(dataManager);
         this.mDataManager = dataManager;
         this.mView = view;

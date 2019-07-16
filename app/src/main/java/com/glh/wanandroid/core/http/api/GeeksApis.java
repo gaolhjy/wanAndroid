@@ -46,7 +46,7 @@ public interface GeeksApis {
     //首页文章列表
     //https://www.wanandroid.com/article/list/1/json (从第0页开始)
     @GET("article/list/{pageNum}/json")
-    Observable<ResBaseBean<FeedArticleListData>> getFeedArticleList(@Path("pageNum") int pageNum);
+    Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> getFeedArticleList(@Path("pageNum") int pageNum);
 
     /**
      * 登录

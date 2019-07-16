@@ -3,6 +3,7 @@ package com.glh.wanandroid.presenter;
 import android.support.annotation.NonNull;
 
 import com.doyo.sdk.mvp.ResBaseBean;
+import com.doyo.sdk.mvp.ResBaseListBean;
 import com.doyo.sdk.rx.BaseObserver;
 import com.doyo.sdk.rx.RxBus;
 import com.doyo.sdk.utils.CommonUtils;
@@ -38,9 +39,7 @@ import io.reactivex.Observable;
 public class HomePresenter extends BasePresenter<HomeContract.View>
         implements HomeContract.Presenter {
 
-
     private HomeContract.View mView;
-
 
     public HomePresenter(DataManager dataManager, HomeContract.View view) {
         super(dataManager);
@@ -82,8 +81,8 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
         Observable<ResBaseBean<LoginData>> mLoginObservable = mDataManager.login(getLoginAccount(),
                 getLoginPassword());
         Observable<ResBaseBean<List<BannerData>>> mBannerObservable = mDataManager.getBannerData();
-        Observable<ResBaseBean<FeedArticleListData>> mArticleObservable =
-                mDataManager.getFeedArticleList(0);
+        Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> mArticleObservable = mDataManager.getFeedArticleList(0);
+
 
         addSubscribe(Observable.zip(mLoginObservable, mBannerObservable, mArticleObservable,
                 this::createResponseMap)
@@ -105,10 +104,10 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
                         if (bannerResponse != null) {
                             mView.showBannerData(bannerResponse.getData());
                         }
-                        ResBaseBean<FeedArticleListData> feedArticleListResponse =
+                        ResBaseBean<ResBaseListBean<FeedArticleData>> articleData =
                                 CommonUtils.cast(map.get(Constants.ARTICLE_DATA));
-                        if (feedArticleListResponse != null) {
-                            mView.showArticleList(feedArticleListResponse.getData());
+                        if (articleData != null) {
+                            mView.showData(articleData.getData());
                         }
                     }
 
@@ -127,7 +126,6 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
         mDataManager.setLoginStatus(true);
         mView.showAutoLoginSuccess();
     }
-
 
 
     @Override
@@ -183,18 +181,18 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
     }
 
     @Override
-    public void getFeedArticleList(int pager,boolean isShowError) {
+    public void getFeedArticleList(int pager, boolean isShowError) {
 
         addSubscribe(mDataManager.getFeedArticleList(pager)
                 .compose(RxUtils.rxSchedulerHelper())
                 .compose(RxUtils.handleResult())
                 .filter(feedArticleListData -> mView != null)
-                .subscribeWith(new BaseObserver<FeedArticleListData>(mView,
+                .subscribeWith(new BaseObserver<ResBaseListBean<FeedArticleData>>(mView,
                         AppContext.getInstance().getString(R.string.failed_to_obtain_article_list), isShowError) {
                     @Override
-                    public void onNext(FeedArticleListData data) {
+                    public void onNext(ResBaseListBean<FeedArticleData> data) {
                         if (data.datas.size() > 0) {
-                            mView.showArticleList(data);
+                            mView.showData(data);
                         } else {
                             mView.showNoMoreData();
                         }
@@ -206,7 +204,7 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
     @NonNull
     private HashMap<String, Object> createResponseMap(ResBaseBean<LoginData> loginData,
                                                       ResBaseBean<List<BannerData>> bannerResponse,
-                                                      ResBaseBean<FeedArticleListData> feedArticleListResponse) {
+                                                      ResBaseBean<ResBaseListBean<FeedArticleData>> feedArticleListResponse) {
         HashMap<String, Object> map = new HashMap<>(3);
         map.put(Constants.LOGIN_DATA, loginData);
         map.put(Constants.BANNER_DATA, bannerResponse);

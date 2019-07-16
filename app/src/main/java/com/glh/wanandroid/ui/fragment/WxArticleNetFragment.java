@@ -68,8 +68,8 @@ public class WxArticleNetFragment extends BaseListFragmentEx<WxArticlePresenter,
 
 
     @Override
-    protected void getData(int currentPage, boolean isShow, String id) {
-       mPresenter.getData(currentPage, id, false);
+    protected void getData(int curPage, boolean isShow, String id) {
+       mPresenter.getData(curPage, id, false);
     }
 
 }

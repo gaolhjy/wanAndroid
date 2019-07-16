@@ -50,7 +50,6 @@ import java.util.List;
 
 public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListAdapter> implements HomeContract.View {
 
-    private List<FeedArticleData> mFeedArticleDataList;
     private Banner                mBanner;
     private List<String>          mBannerTitleList;
     private List<String>          mBannerUrlList;
@@ -77,7 +76,6 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
     @Override
     protected BaseCompatAdapter getAbstractAdapter() {
 
-        mFeedArticleDataList = new ArrayList<>();
         mBannerUrlList = new ArrayList<>();
         mBannerTitleList = new ArrayList<>();
 
@@ -92,8 +90,7 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
 
 
         LinearLayout mHeaderGroup =
-                ((LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.head_banner,
-                        null));
+                (LinearLayout) LayoutInflater.from(_mActivity).inflate(R.layout.head_banner, null);
         mBanner = mHeaderGroup.findViewById(R.id.head_banner);
 
         //设置banner样式
@@ -224,34 +221,12 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
 
     @Override
     public void showLoginView() {
-        mPresenter.getFeedArticleList(currentPage, false);
+        mPresenter.getFeedArticleList(curPage, false);
     }
 
     @Override
     public void showLogoutView() {
-        mPresenter.getFeedArticleList(currentPage, false);
-    }
-
-
-    @Override
-    public void showArticleList(FeedArticleListData datas) {
-
-        if (mPresenter.getCurrentPage() == Constants.TYPE_MAIN_PAGER) {
-            mRecyclerView.setVisibility(View.VISIBLE);
-        } else {
-            mRecyclerView.setVisibility(View.INVISIBLE);
-        }
-        if (mAdapter == null) {
-            return;
-        }
-        if (isRefresh) {
-            mAdapter.setNewData(datas.datas);
-        } else {
-            mAdapter.addData(datas.datas);
-        }
-
-        showNormal();
-
+        mPresenter.getFeedArticleList(curPage, false);
     }
 
 
@@ -265,9 +240,13 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
     }
 
     @Override
-    protected void getData(int currentPage, boolean isShow, String id) {
-        mPresenter.getFeedArticleList(currentPage, false);
-        mPresenter.getBannerData(false);
+    protected void getData(int curPage, boolean isShow, String id) {
+
+        mPresenter.getFeedArticleList(curPage, isRecreate);
+
+        if (isRefresh) {
+            mPresenter.getBannerData(false);
+        }
     }
 
 }

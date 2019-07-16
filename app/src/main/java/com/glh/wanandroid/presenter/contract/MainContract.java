@@ -41,7 +41,7 @@ public interface MainContract {
          *
          * @param page current page
          */
-        void setCurrentPage(int page);
+        void setcurPage(int page);
 
         /**
          * Set night mode state
