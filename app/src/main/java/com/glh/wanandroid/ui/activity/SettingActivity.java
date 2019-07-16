@@ -1,7 +1,23 @@
 package com.glh.wanandroid.ui.activity;
 
-import com.doyo.sdk.activity.BaseSimpleActivity;
+import android.support.v7.widget.AppCompatCheckBox;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.doyo.sdk.activity.BaseMVPActivity;
+import com.doyo.sdk.mvp.AbstractPresenter;
 import com.glh.wanandroid.R;
+import com.glh.wanandroid.core.DataManager;
+import com.glh.wanandroid.core.http.ApiFactory;
+import com.glh.wanandroid.core.http.HttpHelper;
+import com.glh.wanandroid.core.http.HttpHelperImpl;
+import com.glh.wanandroid.core.prefs.PreferenceHelper;
+import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
+import com.glh.wanandroid.presenter.SettingPresenter;
+import com.glh.wanandroid.presenter.contract.SettingContract;
+
+import butterknife.BindView;
 
 /**
  * <pre>
@@ -13,19 +29,50 @@ import com.glh.wanandroid.R;
  *
  * </pre>
  */
-public class SettingActivity extends BaseSimpleActivity {
-    @Override
-    protected void onViewCreated() {
+public class SettingActivity extends BaseMVPActivity<SettingPresenter> implements SettingContract.View, CompoundButton.OnCheckedChangeListener {
 
+    @BindView(R.id.cb_setting_cache)
+    AppCompatCheckBox mCbSettingCache;
+    @BindView(R.id.cb_setting_image)
+    AppCompatCheckBox mCbSettingImage;
+    @BindView(R.id.cb_setting_night)
+    AppCompatCheckBox mCbSettingNight;
+    @BindView(R.id.ll_setting_feedback)
+    TextView          mLlSettingFeedback;
+    @BindView(R.id.ll_setting_clear)
+    LinearLayout      mLlSettingClear;
+    @BindView(R.id.tv_setting_clear)
+    TextView          mTvSettingClear;
+
+    @Override
+    protected AbstractPresenter initPresenter() {
+        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
+        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
+        DataManager manager = new DataManager(mHttpHelper, mPreferenceHelper);
+        mPresenter = new SettingPresenter(manager, this);
+        return mPresenter;
     }
 
     @Override
     protected void initEventAndData() {
-
+        mCbSettingImage.setChecked(mPresenter.getNoImageState());
+        mCbSettingImage.setOnCheckedChangeListener(this);
     }
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_setting;
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        switch (buttonView.getId()) {
+            case R.id.cb_setting_night:
+            case R.id.cb_setting_image:
+                mPresenter.setNoImageState(isChecked);
+                break;
+            default:
+                break;
+        }
     }
 }
