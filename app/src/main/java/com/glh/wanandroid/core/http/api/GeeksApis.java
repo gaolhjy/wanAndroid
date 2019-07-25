@@ -31,8 +31,6 @@ import retrofit2.http.Query;
 
 public interface GeeksApis {
 
-    String HOST = "https://www.wanandroid.com/";
-
     /**
      * 广告栏
      * http://www.wanandroid.com/banner/json

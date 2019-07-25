@@ -25,7 +25,7 @@ public class ApiFactory {
         if (apiService == null) {
             synchronized (monitor) {
                 if (apiService == null)
-                    apiService = RetrofitManager.getInstance(GeeksApis.HOST).create(GeeksApis.class);
+                    apiService = RetrofitManager.getInstance().create(GeeksApis.class);
             }
         }
         return apiService;

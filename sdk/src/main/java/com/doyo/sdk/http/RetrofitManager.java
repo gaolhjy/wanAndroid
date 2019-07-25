@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.annotations.NonNull;
+import me.jessyan.retrofiturlmanager.RetrofitUrlManager;
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
@@ -42,6 +43,7 @@ public class RetrofitManager {
 
     private static RetrofitManager instance;
     private static Retrofit        retrofit;
+    private        String          BASEHOST = "https://www.wanandroid.com/";
 
     private HttpLoggingInterceptor mLogInterceptor =
             new HttpLoggingInterceptor(new HttpLoggingInterceptor.Logger() {
@@ -52,23 +54,22 @@ public class RetrofitManager {
             });
 
 
-    private RetrofitManager(String baseUrl) {
+    private RetrofitManager() {
         Gson gson = new GsonBuilder().serializeNulls().setLenient().create();
         mLogInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         retrofit = new Retrofit.Builder()
-                .baseUrl(baseUrl)
+                .baseUrl(BASEHOST)
                 .client(httpClient())
-                .addConverterFactory(GsonConverterFactory.create(gson))
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))     //使用Gson
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())     //使用rxjava
                 .build();
-
     }
 
-    public static RetrofitManager getInstance(String baseUrl) {
+    public static RetrofitManager getInstance() {
         if (instance == null) {
             synchronized (RetrofitManager.class) {
                 if (instance == null) {
-                    instance = new RetrofitManager(baseUrl);
+                    instance = new RetrofitManager();
                 }
             }
         }
@@ -85,7 +86,8 @@ public class RetrofitManager {
         File cacheFile = new File(FileUtil.getAppCacheDir(GlobalApplication.getInstance()),
                 "/GlhAppCache");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100);
-        return new OkHttpClient.Builder()
+
+        return RetrofitUrlManager.getInstance().with(new OkHttpClient.Builder())
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(20, TimeUnit.SECONDS)
                 .writeTimeout(20, TimeUnit.SECONDS)
