@@ -138,7 +138,6 @@ public class NavigationFragment extends BaseNetFragment<NavigationPresenter> imp
 
         setChildViewVisibility(View.VISIBLE);
         mAdapter.replaceData(navigationDataList);
-        //        leftRightLinkage();
         showNormal();
     }
 
