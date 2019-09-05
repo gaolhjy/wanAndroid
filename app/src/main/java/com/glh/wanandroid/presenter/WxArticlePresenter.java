@@ -25,13 +25,8 @@ import com.glh.wanandroid.utils.RxUtils;
 public class WxArticlePresenter extends BasePresenter<IBaseListView>
         implements IBaseListContract.Presenter {
 
-    private IBaseListView mView;
-
-
     public WxArticlePresenter(DataManager dataManager, IBaseListView view) {
-        super(dataManager);
-        this.mDataManager = dataManager;
-        this.mView = view;
+        super(dataManager,view);
     }
 
 

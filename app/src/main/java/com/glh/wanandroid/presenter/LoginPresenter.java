@@ -26,13 +26,8 @@ import com.glh.wanandroid.utils.RxUtils;
 
 public class LoginPresenter extends BasePresenter<LoginContract.View> implements LoginContract.Presenter {
 
-
-    private LoginContract.View mView;
-
     public LoginPresenter(DataManager dataManager, LoginContract.View view) {
-        super(dataManager);
-        this.mDataManager = dataManager;
-        this.mView = view;
+        super(dataManager,view);
     }
 
     @Override

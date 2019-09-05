@@ -27,13 +27,8 @@ public class KnowlePresenter extends BasePresenter<IBaseListView>
         implements IBaseListContract.Presenter {
 
 
-    private IBaseListView mView;
-
-
     public KnowlePresenter(DataManager dataManager, IBaseListView view) {
-        super(dataManager);
-        this.mDataManager = dataManager;
-        this.mView = view;
+        super(dataManager, view);
     }
 
 

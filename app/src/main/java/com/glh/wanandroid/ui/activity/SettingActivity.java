@@ -8,14 +8,9 @@ import android.widget.TextView;
 import com.doyo.sdk.activity.BaseMVPActivity;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.glh.wanandroid.R;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.SettingPresenter;
 import com.glh.wanandroid.presenter.contract.SettingContract;
+import com.glh.wanandroid.utils.MvpUtils;
 
 import butterknife.BindView;
 
@@ -46,10 +41,7 @@ public class SettingActivity extends BaseMVPActivity<SettingPresenter> implement
 
     @Override
     protected AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager manager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new SettingPresenter(manager, this);
+        mPresenter = new SettingPresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

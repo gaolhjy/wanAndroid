@@ -10,15 +10,10 @@ import com.doyo.sdk.utils.UiUtils;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.FeedArticleData;
 import com.glh.wanandroid.bean.FeedArticleListData;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.MyCollectPresenter;
 import com.glh.wanandroid.presenter.contract.MyCollectContract;
 import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
+import com.glh.wanandroid.utils.MvpUtils;
 
 /**
  * <pre>
@@ -90,10 +85,7 @@ public class MyCollectActivity extends BaseListActivityEx<MyCollectPresenter, Ar
     @NonNull
     @Override
     public AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager manager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new MyCollectPresenter(manager, this);
+        mPresenter = new MyCollectPresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

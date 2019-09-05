@@ -24,12 +24,8 @@ import com.glh.wanandroid.utils.RxUtils;
 public class ToDoPresenter extends BasePresenter<ToDoContract.View>
         implements ToDoContract.Presenter {
 
-    private ToDoContract.View mView;
-
     public ToDoPresenter(DataManager dataManager, ToDoContract.View view) {
-        super(dataManager);
-        this.mDataManager = dataManager;
-        this.mView = view;
+        super(dataManager,view);
     }
 
 

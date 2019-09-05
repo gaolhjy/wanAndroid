@@ -7,14 +7,9 @@ import com.doyo.sdk.fragment.BaseListFragmentEx;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.constant.Constants;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.KnowleDetailPresenter;
 import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
+import com.glh.wanandroid.utils.MvpUtils;
 
 /**
  * <pre>
@@ -27,7 +22,8 @@ import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
  * </pre>
  */
 
-public class KnowleNetFragment extends BaseListFragmentEx<KnowleDetailPresenter, ArticleListAdapter> {
+public class KnowleNetFragment extends BaseListFragmentEx<KnowleDetailPresenter,
+        ArticleListAdapter> {
 
     public static KnowleNetFragment getInstance(String id, String param2) {
         KnowleNetFragment fragment = new KnowleNetFragment();
@@ -58,16 +54,14 @@ public class KnowleNetFragment extends BaseListFragmentEx<KnowleDetailPresenter,
 
     @Override
     protected void getData(int curPage, boolean isShow, String id) {
+        curPage = 0;
         mPresenter.getData(curPage, id, isShow);
     }
 
 
     @Override
     protected AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new KnowleDetailPresenter(dataManager, this);
+        mPresenter = new KnowleDetailPresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

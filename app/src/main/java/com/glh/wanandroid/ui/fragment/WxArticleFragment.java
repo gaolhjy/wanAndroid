@@ -6,22 +6,17 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.view.View;
 
-import com.doyo.sdk.fragment.BaseNetFragment;
 import com.doyo.sdk.fragment.BaseMVPFragment;
+import com.doyo.sdk.fragment.BaseNetFragment;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.doyo.sdk.utils.NetUtils;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.WxNameListData;
 import com.glh.wanandroid.constant.Constants;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.WxPresenter;
 import com.glh.wanandroid.presenter.contract.WxContract;
+import com.glh.wanandroid.utils.MvpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -145,12 +140,7 @@ public class WxArticleFragment extends BaseNetFragment<WxPresenter> implements W
 
     @Override
     protected AbstractPresenter initPresenter() {
-
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new WxPresenter(dataManager, this);
-
+        mPresenter = new WxPresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

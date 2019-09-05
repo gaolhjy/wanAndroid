@@ -16,12 +16,8 @@ import com.glh.wanandroid.presenter.contract.SettingContract;
  */
 public class SettingPresenter extends BasePresenter<SettingContract.View> implements SettingContract.Presenter {
 
-    private SettingContract.View mView;
-
-
     public SettingPresenter(DataManager dataManager, SettingContract.View view) {
         super(dataManager, view);
-        this.mView = view;
     }
 
     @Override

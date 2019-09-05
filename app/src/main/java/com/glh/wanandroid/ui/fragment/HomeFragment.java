@@ -19,17 +19,12 @@ import com.glh.wanandroid.bean.BannerData;
 import com.glh.wanandroid.bean.FeedArticleData;
 import com.glh.wanandroid.bean.FeedArticleListData;
 import com.glh.wanandroid.constant.Constants;
-import com.glh.wanandroid.core.DataManager;
 import com.glh.wanandroid.core.event.AutoLoginEvent;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.HomePresenter;
 import com.glh.wanandroid.presenter.contract.HomeContract;
 import com.glh.wanandroid.ui.activity.LoginActivity;
 import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
+import com.glh.wanandroid.utils.MvpUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.Transformer;
@@ -50,11 +45,11 @@ import java.util.List;
 
 public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListAdapter> implements HomeContract.View {
 
-    private Banner                mBanner;
-    private List<String>          mBannerTitleList;
-    private List<String>          mBannerUrlList;
-    private boolean               isRecreate;
-    private int                   articlePosition;
+    private Banner       mBanner;
+    private List<String> mBannerTitleList;
+    private List<String> mBannerUrlList;
+    private boolean      isRecreate;
+    private int          articlePosition;
 
 
     public static HomeFragment getInstance(boolean param1, String param2) {
@@ -232,17 +227,14 @@ public class HomeFragment extends BaseListFragmentEx<HomePresenter, ArticleListA
 
     @Override
     protected AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new HomePresenter(dataManager, this);
+        mPresenter = new HomePresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 
     @Override
     protected void getData(int curPage, boolean isShow, String id) {
 
-        mPresenter.getFeedArticleList(curPage, isRecreate);
+        mPresenter.getFeedArticleList(curPage, isShow);
 
         if (isRefresh) {
             mPresenter.getBannerData(false);

@@ -71,9 +71,4 @@ public class ArticleDetailActivity extends BaseSimpleActivity {
                 .ready()
                 .go(data.projectLink);
     }
-
-
-
-
-
 }

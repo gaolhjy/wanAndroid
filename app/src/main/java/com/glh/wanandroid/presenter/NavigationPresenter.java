@@ -24,14 +24,8 @@ import java.util.List;
 
 public class NavigationPresenter extends BasePresenter<NavigationContract.View> implements NavigationContract.Presenter {
 
-
-    private NavigationContract.View mView;
-
-
     public NavigationPresenter(DataManager dataManager, NavigationContract.View view) {
-        super(dataManager);
-        this.mDataManager = dataManager;
-        this.mView = view;
+        super(dataManager,view);
     }
 
 

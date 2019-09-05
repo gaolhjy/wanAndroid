@@ -102,7 +102,4 @@ public class KnowleDetailActivity extends BaseSimpleActivity {
         });
         mTabLayout.setViewPager(mViewPager);
     }
-
-
-
 }

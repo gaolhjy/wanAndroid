@@ -39,12 +39,8 @@ import io.reactivex.Observable;
 public class HomePresenter extends BasePresenter<HomeContract.View>
         implements HomeContract.Presenter {
 
-    private HomeContract.View mView;
-
     public HomePresenter(DataManager dataManager, HomeContract.View view) {
-        super(dataManager);
-        this.mDataManager = dataManager;
-        this.mView = view;
+        super(dataManager, view);
     }
 
     @Override
@@ -81,7 +77,8 @@ public class HomePresenter extends BasePresenter<HomeContract.View>
         Observable<ResBaseBean<LoginData>> mLoginObservable = mDataManager.login(getLoginAccount(),
                 getLoginPassword());
         Observable<ResBaseBean<List<BannerData>>> mBannerObservable = mDataManager.getBannerData();
-        Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> mArticleObservable = mDataManager.getFeedArticleList(0);
+        Observable<ResBaseBean<ResBaseListBean<FeedArticleData>>> mArticleObservable =
+                mDataManager.getFeedArticleList(0);
 
 
         addSubscribe(Observable.zip(mLoginObservable, mBannerObservable, mArticleObservable,

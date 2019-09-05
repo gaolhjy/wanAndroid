@@ -16,16 +16,11 @@ import com.glh.wanandroid.bean.ToDoListData;
 import com.glh.wanandroid.bean.TodoDesData;
 import com.glh.wanandroid.bean.TodoSection;
 import com.glh.wanandroid.constant.Constants;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.ToDoPresenter;
 import com.glh.wanandroid.presenter.contract.ToDoContract;
 import com.glh.wanandroid.ui.activity.AddTodoActivity;
 import com.glh.wanandroid.ui.adapter.ToDoAdapter;
+import com.glh.wanandroid.utils.MvpUtils;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import java.util.ArrayList;
@@ -85,10 +80,7 @@ public class TodoFragment extends BaseListFragment<ToDoPresenter,ToDoAdapter,ToD
 
     @Override
     protected AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new ToDoPresenter(dataManager, this);
+        mPresenter = new ToDoPresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

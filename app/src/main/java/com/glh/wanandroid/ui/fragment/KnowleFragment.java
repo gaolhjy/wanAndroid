@@ -11,15 +11,10 @@ import com.doyo.sdk.utils.JumpUtils;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.KnowleData;
 import com.glh.wanandroid.constant.Constants;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.KnowlePresenter;
 import com.glh.wanandroid.ui.activity.KnowleDetailActivity;
 import com.glh.wanandroid.ui.adapter.KnowledgeHierarchyListAdapter;
+import com.glh.wanandroid.utils.MvpUtils;
 
 import java.util.List;
 
@@ -35,7 +30,7 @@ import java.util.List;
  */
 
 public class KnowleFragment extends BaseListFragment<KnowlePresenter,
-        KnowledgeHierarchyListAdapter,List<KnowleData>> implements IBaseListView<List<KnowleData>> {
+        KnowledgeHierarchyListAdapter, List<KnowleData>> implements IBaseListView<List<KnowleData>> {
 
     public static KnowleFragment getInstance(String param1, String param2) {
         KnowleFragment fragment = new KnowleFragment();
@@ -75,10 +70,7 @@ public class KnowleFragment extends BaseListFragment<KnowlePresenter,
 
     @Override
     protected AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new KnowlePresenter(dataManager, this);
+        mPresenter = new KnowlePresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

@@ -15,14 +15,9 @@ import com.doyo.sdk.utils.TimeUtils;
 import com.doyo.sdk.widget.HeaderBar;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.TodoDesData;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.AddTodoPresenter;
 import com.glh.wanandroid.presenter.contract.AddToDoContract;
+import com.glh.wanandroid.utils.MvpUtils;
 import com.hjq.toast.ToastUtils;
 
 import java.util.Calendar;
@@ -69,10 +64,7 @@ public class AddTodoActivity extends BaseNetActivity<AddTodoPresenter> implement
 
     @Override
     protected AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new AddTodoPresenter(dataManager, this);
+        mPresenter = new AddTodoPresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

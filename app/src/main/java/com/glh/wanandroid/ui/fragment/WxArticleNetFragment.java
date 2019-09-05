@@ -7,14 +7,9 @@ import com.doyo.sdk.fragment.BaseListFragmentEx;
 import com.doyo.sdk.mvp.AbstractPresenter;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.constant.Constants;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.WxArticlePresenter;
 import com.glh.wanandroid.ui.adapter.ArticleListAdapter;
+import com.glh.wanandroid.utils.MvpUtils;
 
 /**
  * <pre>
@@ -59,10 +54,7 @@ public class WxArticleNetFragment extends BaseListFragmentEx<WxArticlePresenter,
 
     @Override
     protected AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new WxArticlePresenter(dataManager, this);
+        mPresenter = new WxArticlePresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

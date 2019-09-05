@@ -13,15 +13,10 @@ import com.doyo.sdk.utils.NetUtils;
 import com.glh.wanandroid.R;
 import com.glh.wanandroid.bean.NaviData;
 import com.glh.wanandroid.constant.Constants;
-import com.glh.wanandroid.core.DataManager;
-import com.glh.wanandroid.core.http.ApiFactory;
-import com.glh.wanandroid.core.http.HttpHelper;
-import com.glh.wanandroid.core.http.HttpHelperImpl;
-import com.glh.wanandroid.core.prefs.PreferenceHelper;
-import com.glh.wanandroid.core.prefs.PreferenceHelperImpl;
 import com.glh.wanandroid.presenter.NavigationPresenter;
 import com.glh.wanandroid.presenter.contract.NavigationContract;
 import com.glh.wanandroid.ui.adapter.NavigationAdapter;
+import com.glh.wanandroid.utils.MvpUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -150,10 +145,7 @@ public class NavigationFragment extends BaseNetFragment<NavigationPresenter> imp
 
     @Override
     protected AbstractPresenter initPresenter() {
-        PreferenceHelper mPreferenceHelper = new PreferenceHelperImpl();
-        HttpHelper mHttpHelper = new HttpHelperImpl(ApiFactory.getApiService());
-        DataManager dataManager = new DataManager(mHttpHelper, mPreferenceHelper);
-        mPresenter = new NavigationPresenter(dataManager, this);
+        mPresenter = new NavigationPresenter(MvpUtils.initDataManager(), this);
         return mPresenter;
     }
 

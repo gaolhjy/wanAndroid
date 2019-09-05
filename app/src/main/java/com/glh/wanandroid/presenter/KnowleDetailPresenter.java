@@ -25,14 +25,8 @@ import com.glh.wanandroid.utils.RxUtils;
 public class KnowleDetailPresenter extends BasePresenter<IBaseListView>
         implements IBaseListContract.Presenter {
 
-
-    private IBaseListView mView;
-
-
     public KnowleDetailPresenter(DataManager dataManager, IBaseListView view) {
-        super(dataManager);
-        this.mDataManager = dataManager;
-        this.mView = view;
+        super(dataManager,view);
     }
 
 
